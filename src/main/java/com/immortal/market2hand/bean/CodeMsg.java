@@ -128,10 +128,12 @@ public class CodeMsg {
 	
 	//前端用户登录注册类错误码
 	public static CodeMsg HOME_STUDENT_REGISTER_SN_EXIST = new CodeMsg(-10000, "该学号已存在，请勿重复注册！");
+	public static CodeMsg HOME_STUDENT_REGISTER_EMAIL_EXIST = new CodeMsg(-10005, "该邮箱未注册，请注册！");
 	public static CodeMsg HOME_STUDENT_REGISTER_ERROR = new CodeMsg(-10001, "注册失败，请联系管理员！");
 	public static CodeMsg HOME_STUDENT_SN_NO_EXIST = new CodeMsg(-10002, "该学号不存在！");
 	public static CodeMsg HOME_STUDENT_PASSWORD_ERROR = new CodeMsg(-10003, "密码错误！");
-	public static CodeMsg HOME_STUDENT_UNABLE = new CodeMsg(-10003, "该用户已被冻结，请联系管理员！");
+	public static CodeMsg HOME_STUDENT_UNABLE = new CodeMsg(-10004, "该用户已被冻结，请联系管理员！");
+	public static CodeMsg HOME_STUDENT_SENDMAIL = new CodeMsg(-10006, "修改密码邮件已发送，请注意查收！");
 	//前端用户中心错误码
 	public static CodeMsg HOME_STUDENT_EDITINFO_ERROR = new CodeMsg(-20000, "基本信息修改失败，请联系管理员！");
 	public static CodeMsg HOME_STUDENT_EDITPWD_OLD_ERROR = new CodeMsg(-20001, "原密码错误！");

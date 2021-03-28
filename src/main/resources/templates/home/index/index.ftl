@@ -4,6 +4,8 @@
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 <title>${siteName!""}</title>
 <link rel="icon" href="/home/imgs/favicon.ico" type="image/x-icon">
+<link media="all" href="/home/css/layui.css" type="text/css" rel="stylesheet">
+<link media="all" href="/home/css/layer.css" type="text/css" rel="stylesheet">
 <link media="all" href="/home/css/index.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -11,6 +13,7 @@
 	<#include "../common/left_menu.ftl"/> 
     <div class="container">
    		<div class="main center">
+            <#if false>
                 <div class="wrap-site mt20">
             <div class="recom-title"></div>
             <ul class="recom-list group">
@@ -21,11 +24,21 @@
                 </#if>
             </ul>
             <#if ylrc_auth != 1>
-            <p class="h6 text-white m-t-0" style="font-size:16px;margin-top:10px;" id="show-copyright">本系统由【猿来入此】发布，请认准官网获取，官网获取的正版源码提供免费更新升级！</p>
-            <p class="h3 text-white m-b-0" style="font-size:16px;margin-top:10px;">正版官网地址：<a href="https://www.yuanlrc.com/product/details.html?pid=326&fuid=4" style="color:red;margin-right:20px;">https://www.yuanlrc.com</a><a href="javascript:alert('请登录后台首页后点击去广告按钮，后台验证成功后刷新一下此处的自动消失!')" class="btn btn-danger" id="order-auth-btn">点我去广告</a></p>
+            <p class="h6 text-white m-t-0" style="font-size:16px;margin-top:10px;" id="show-copyright"></p>
+            <p class="h3 text-white m-b-0" style="font-size:16px;margin-top:10px;"><a href="https://www.com/product/details.html?pid=326&fuid=4" style="color:red;margin-right:20px;">https://www.yuanlrc.com</a><a href="javascript:alert('请登录后台首页后点击去广告按钮，后台验证成功后刷新一下此处的自动消失!')" class="btn btn-danger" id="order-auth-btn">点我去广告</a></p>
         	</#if>
-        </div>
-        <div class="label-wr center clearfix">
+        </div></#if>
+            <div class="layui-carousel" id="test1" lay-filter="test1">
+                <div carousel-item="">
+                    <div><img src="/home/imgs/sh.jpg" width="100%"></div>
+                    <div><img src="/home/imgs/vip_jp.jpg" width="100%"></div>
+                    <div><img src="/home/imgs/xjjt.jpg" width="100%"></div>
+                </div>
+            </div>
+
+
+
+            <div class="label-wr center clearfix">
             <div id="nav-labels">
                 <button id="new_pro" class="labels" onclick="" ></button>
             </div>
@@ -87,4 +100,20 @@
 <script  src="/home/js/jquery-3.1.1.min.js"></script>
 <script src="/home/js/common.js"></script>
 <script src="/home/js/index.js"></script>
+<script src="/admin/js/bootstrap.min.js"></script>
+<script src="/home/js/layui.all.js"></script>
+<script type="text/javascript">
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,arrow: 'hover' //始终显示箭头
+            ,autoplay:true
+            //,anim: 'updown' //切换动画方式
+        });
+    });
+</script>
+</body>
 </html>

@@ -50,7 +50,11 @@ public class Student extends BaseEntity{
 	@ValidateEntity(required=true,minLength=5,maxLength=12,errorMinLengthMsg="qq号最小5位",errorMaxLengthMsg="qq号长度不能大于12")
 	@Column(name="qq",length=18)
 	private String qq;//QQ号
-	
+
+	@ValidateEntity(required=false)
+	@Column(name="stuemail",length=64)
+	private String stuemail;//邮箱
+
 	@ValidateEntity(required=false)
 	@Column(name="school",length=18)
 	private String school;//所属学校
@@ -147,25 +151,28 @@ public class Student extends BaseEntity{
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "Student [sn=" + sn + ", password=" + password + ", headPic="
-				+ headPic + ", nickname=" + nickname + ", mobile=" + mobile
-				+ ", qq=" + qq + ", school=" + school + ", academy=" + academy
-				+ ", grade=" + grade + ", status=" + status + "]";
+	public String getStuemail() {
+		return stuemail;
 	}
 
-	
+	public void setStuemail(String stuemail) {
+		this.stuemail = stuemail;
+	}
 
-	
-	
-
-	
-
-	
-	
-
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Student{" +
+				"sn='" + sn + '\'' +
+				", password='" + password + '\'' +
+				", headPic='" + headPic + '\'' +
+				", nickname='" + nickname + '\'' +
+				", mobile='" + mobile + '\'' +
+				", qq='" + qq + '\'' +
+				", stuemail='" + stuemail + '\'' +
+				", school='" + school + '\'' +
+				", academy='" + academy + '\'' +
+				", grade='" + grade + '\'' +
+				", status=" + status +
+				'}';
+	}
 }

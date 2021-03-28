@@ -25,4 +25,8 @@ public interface StudentDao extends JpaRepository<Student, Long> {
 	 */
 	@Query("select s from Student s where id = :id")
 	Student find(@Param("id") Long id);
+
+	@Query("select s from Student s where stuemail = :stuemail")
+	Student findByEmail(String stuemail);
+
 }

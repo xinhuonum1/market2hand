@@ -57,12 +57,19 @@ var reMethod = "POST",
 	pwdmin = 6;
 
 $(document).ready(function() {
-	
+	$('#alertMsg1').blur(function () {
+		if($('#emailVal').val().length == 0 ){
+		$('#alertMsg1').html("<font color='red'><b>邮箱不能为空</b></font>")
+		}else if($('#verifyCode').val().length == 0){
+			$('#alertMsg1').html("<font color='red'><b>验证码不能为空</b></font>")
+		}
+	});
+
 	$('#login-sn').focus(function(){
-		$('#loginCue').html("<font ><b>请输入学号</b></font>");
+		$('#loginCue').html("<font ><b>请输入用户名或邮箱地址</b></font>");
 	}).blur(function(){
 		if($('#login-sn').val().length == 0){
-			$('#loginCue').html("<font color='red'><b>学号不能为空</b></font>");
+			$('#loginCue').html("<font color='red'><b>账号不能为空</b></font>");
 			return false;
 		}else{
 			$.ajax({
@@ -77,7 +84,7 @@ $(document).ready(function() {
 							border: "1px solid red",
 							boxShadow: "0 0 2px red"
 						});
-						$("#loginCue").html("<font color='red'><b>学号不存在</b></font>");
+						$("#loginCue").html("<font color='red'><b>账号不存在</b></font>");
 						$("#login_button").attr("disabled","true");
 						return false;
 					} else {
@@ -98,7 +105,7 @@ $(document).ready(function() {
 				border: "1px solid red",
 				boxShadow: "0 0 2px red"
 			});
-			$('#loginCue').html("<font color='red'><b>学号不能为空</b></font>");
+			$('#loginCue').html("<font color='red'><b>账号不能为空</b></font>");
 			return false;
 		}else {
 			$('#login-sn').css({
@@ -154,7 +161,7 @@ $(document).ready(function() {
 						border: "1px solid red",
 						boxShadow: "0 0 2px red"
 					});
-					$("#userCue").html("<font color='red'><b>学号已存在</b></font>");
+					$("#userCue").html("<font color='red'><b>账号已存在</b></font>");
 					return false;
 				}else {
 					$('#user-sn').css({

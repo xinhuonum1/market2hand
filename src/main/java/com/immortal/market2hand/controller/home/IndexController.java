@@ -18,11 +18,12 @@ import com.immortal.market2hand.util.ValidateEntityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -131,6 +132,40 @@ public class IndexController {
 		//表示注册成功，此时将用户信息放入session
 		SessionUtil.set(SessionConstant.SESSION_STUDENT_LOGIN_KEY, student);
 		return Result.success(true);
+	}
+
+	/**
+	*忘记密码
+	*@param: * @param forgetPwd
+	*@return:
+	*@date:2021/3/27
+	*/
+	@RequestMapping(value="/forgetPwd",method=RequestMethod.POST)
+	@ResponseBody
+	public Result forgetPwd(HttpServletRequest request, String[] forgetPwd) throws MessagingException {
+		Result<Student> result = null;
+		if(null != forgetPwd){
+			String stuemail = forgetPwd[0];
+			String cpacha = forgetPwd[1];
+			result = studentService.forgetPwd(request,stuemail,cpacha);
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/updatePassword")
+	public String forgetPassword(){
+		return "home/index/forgetPassword";
+	}
+
+	@RequestMapping("/updateUserPassword")
+	@ResponseBody
+	public Result updateUserPassword(String stuemail,String password,String truePassword,String cpata){
+		System.out.println(stuemail);
+		System.out.println(password);
+		System.out.println(truePassword);
+		System.out.println(cpata);
+
+		return Result.success("更新密码成功");
 	}
 	
 	/**

@@ -54,7 +54,7 @@ footer { padding: 0px 0px 20px; background: rgb(247, 250, 249) url('../imgs/foot
 footer a { color: rgb(102, 102, 102); text-decoration: none; }
 footer a:hover { color: rgb(237, 78, 81); }
 .site-msg { margin: 10px 0px 0px; color: rgb(133, 142, 143); text-align: center; }
-nav { position: fixed; z-index: 80; left: 0px; top: 0px; width: 120px; height: 100%; background-color: rgb(255, 255, 255); box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.1); transition: all 0.2s linear 0s; }
+nav { position: absolute; z-index: 80; left: 0px; top: 0px; width: 120px; height: 100%; background-color: rgb(255, 255, 255); box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.1); transition: all 0.2s linear 0s; }
 nav ul { list-style: outside none none; color: rgb(102, 102, 102); }
 nav ul li { border-bottom: 1px solid rgb(224, 235, 231); position: relative; }
 nav a { display: block; height: 100%; color: inherit; font-size: inherit; text-decoration: inherit; }

@@ -48,6 +48,10 @@ public class Result<T> {
 		return new Result<T>(data,CodeMsg.SUCCESS);
 	}
 
+	public static <T>Result<T> success(CodeMsg codeMsg){
+		return new Result<T>(codeMsg);
+	}
+
 	/**
 	 * 统一错误返回方法，所有错误都调用此方法
 	 * @param codeMsg
@@ -56,7 +60,8 @@ public class Result<T> {
 	public static <T>Result<T> error(CodeMsg codeMsg){
 		return new Result<T>(codeMsg);
 	}
-	
+
+
 	public int getCode() {
 		return code;
 	}

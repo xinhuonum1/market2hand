@@ -9,7 +9,6 @@ body {
 	background-repeat: no-repeat;
 
     background-size:cover;  
-    background-position: fixed;
 }
 ul {
 	padding:0;
@@ -34,9 +33,13 @@ input::-ms-clear {
 .login {
 	margin:0 auto;
 	width:370px;
-	border:2px solid #eee;
+	height: 360px;
+	border-radius: 15px;
+	background-clip: padding-box;
+	border: 1px solid #eaeaea;
 	border-bottom:none;
 	position:relative;
+	box-shadow: 0 0 20px #cac6c6;
 }
 .header {
 	height:50px;
@@ -166,6 +169,19 @@ input::-ms-clear {
 	position:relative;
 	z-index:3;
 }
+
+.web_login .forgetPwdArea {
+	position:relative;
+	z-index:3;
+}
+
+.web_login .forgetPwd{
+	font-family: 宋体;
+	font-size: 14px;
+	text-decoration: none;
+	padding-left:180px ;
+}
+
 .web_qr_login {
 	position:relative;
 }
@@ -207,7 +223,9 @@ margin-bottom: 10px;border:1px solid #eee;border-radius:3px;
 }
 .web_login input.inputstyle2:focus, .web_login input.inputstyle:focus {
 border: 1px solid #5796f;
+	width: 100%;
 box-shadow: 0 0 0;
+	font-size: 16px;
 }
 .web_login .reg_form {
 width: 300px;
@@ -219,6 +237,7 @@ padding-right: 5px;
 width: 80px;_width: 75px;_font-size:12px;}
 .button_blue
 {
+	clear: both;
 	display:inline-block;
 	float:left;
 	height:41px;border-radius:4px;
