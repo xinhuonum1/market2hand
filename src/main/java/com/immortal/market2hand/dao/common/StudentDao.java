@@ -4,9 +4,11 @@ package com.immortal.market2hand.dao.common;
  */
 import com.immortal.market2hand.entity.common.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface StudentDao extends JpaRepository<Student, Long> {
@@ -29,4 +31,8 @@ public interface StudentDao extends JpaRepository<Student, Long> {
 	@Query("select s from Student s where stuemail = :stuemail")
 	Student findByEmail(String stuemail);
 
+	@Transactional
+	@Modifying
+	@Query("update Student s set s.password = :password where s.stuemail = :stuemail")
+    void updatePasswordByEmail(@Param("stuemail") String stuemail, @Param("password") String password);
 }

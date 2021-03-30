@@ -7,6 +7,7 @@ import com.immortal.market2hand.bean.PageBean;
 import com.immortal.market2hand.bean.Result;
 import com.immortal.market2hand.dao.common.StudentDao;
 import com.immortal.market2hand.entity.common.Student;
+import com.immortal.market2hand.util.MD5SecretUtil;
 import com.immortal.market2hand.util.MailUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,5 +124,23 @@ public class StudentService {
 		}
 		//返回结果
 		return Result.error(CodeMsg.HOME_STUDENT_REGISTER_EMAIL_EXIST);
+	}
+
+	public Result updatePasswordByStuemail(HttpServletRequest request,String stuemail, String password, String cpata) {
+		//表示实体信息合法，开始验证验证码是否为空
+		if(StringUtils.isEmpty(cpata)){
+			return Result.error(CodeMsg.CPACHA_EMPTY);
+		}
+		//说明验证码不为空，从session里获取验证码
+		Object attribute = request.getSession().getAttribute("admin_login");
+		if(attribute == null){
+			return Result.error(CodeMsg.SESSION_EXPIRED);
+		}
+		if(cpata.equalsIgnoreCase(attribute.toString())){
+			String newPassword = MD5SecretUtil.md5(password);
+			studentDao.updatePasswordByEmail(stuemail,newPassword);
+			return Result.success(CodeMsg.HOME_STUDENT_PASSWORD_UPDATE_success);
+		}
+		return Result.error(CodeMsg.HOME_STUDENT_PASSWORD_UPDATE_ERROR);
 	}
 }

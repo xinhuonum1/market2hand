@@ -31,8 +31,8 @@ public class Student extends BaseEntity{
 	@Column(name="sn",nullable=false,length=18,unique=true)
 	private String sn;//学生学号
 	
-	@ValidateEntity(required=true,requiredLeng=true,minLength=6,maxLength=18,errorRequiredMsg="密码不能为空!",errorMinLengthMsg="密码长度需大于6!",errorMaxLengthMsg="密码长度不能大于18!")
-	@Column(name="password",nullable=false,length=18)
+	@ValidateEntity(required=true,requiredLeng=true,minLength=6,maxLength=255,errorRequiredMsg="密码不能为空!",errorMinLengthMsg="密码长度需大于6!")
+	@Column(name="password",nullable=false,length=255)
 	private String password;//学生登录密码
 	
 	@ValidateEntity(required=false)

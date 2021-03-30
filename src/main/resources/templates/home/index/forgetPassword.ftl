@@ -59,6 +59,15 @@
   <script src="/admin/js/bootstrap.min.js"></script>
   <script src="/home/js/layui.all.js"></script>
 <script type="text/javascript">
+    layui.use('form',function(){
+        let form = layui.form;
+
+       /* form.on('submit(formDemo)',function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        })*/
+    });
+
 $(document).ready(function(){
    
 });

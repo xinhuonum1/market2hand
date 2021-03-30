@@ -159,11 +159,12 @@ public class IndexController {
 
 	@RequestMapping("/updateUserPassword")
 	@ResponseBody
-	public Result updateUserPassword(String stuemail,String password,String truePassword,String cpata){
-		System.out.println(stuemail);
-		System.out.println(password);
-		System.out.println(truePassword);
-		System.out.println(cpata);
+	public Result updateUserPassword(String stuemail,String password,String truePassword,String cpata,HttpServletRequest request){
+
+		if(null != password && password.equals(truePassword)){
+	  Result result = studentService.updatePasswordByStuemail(request,stuemail,password,cpata);
+	  return result;
+		}
 
 		return Result.success("更新密码成功");
 	}

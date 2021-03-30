@@ -37,7 +37,7 @@
                         <div class="uinArea" id="uinArea">
                             <label class="input-tips" for="id">账号</label>
                             <div class="inputOuter" id="uArea">
-                                <input type="text" id="login-sn" name="sn" class="inputstyle"
+                                <input type="text" id="login-sn" name="account" class="inputstyle"
                                        placeholder="请输入邮箱地址或用户名"/>
                             </div>
                         </div>
