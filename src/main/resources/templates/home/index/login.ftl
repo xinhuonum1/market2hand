@@ -77,9 +77,9 @@
                     <div id="userCue" class="cue">快速注册请注意格式</div>
                     <li>
 
-                        <label for="user" class="input-tips2">学号：</label>
+                        <label for="user" class="input-tips2">邮箱：</label>
                         <div class="inputOuter2">
-                            <input type="text" id="user-sn" name="sn" maxlength="12" class="inputstyle2"/>
+                            <input type="text" id="user-sn" name="stuemail" maxlength="64" class="inputstyle2"/>
                         </div>
 
                     </li>
@@ -107,7 +107,6 @@
                         </div>
 
                     </li>
-
                     <li>
                         <div class="inputArea">
                             <input type="button" id="reg_button" style="margin-top:10px;margin-left:85px;"

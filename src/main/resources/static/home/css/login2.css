@@ -33,7 +33,7 @@ input::-ms-clear {
 .login {
 	margin:0 auto;
 	width:370px;
-	height: 360px;
+	height: 400px;
 	border-radius: 15px;
 	background-clip: padding-box;
 	border: 1px solid #eaeaea;

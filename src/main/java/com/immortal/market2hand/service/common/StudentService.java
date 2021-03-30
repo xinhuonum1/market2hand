@@ -143,4 +143,18 @@ public class StudentService {
 		}
 		return Result.error(CodeMsg.HOME_STUDENT_PASSWORD_UPDATE_ERROR);
 	}
+
+	public Student findByNameAndEmail(String account) {
+		//根据昵称和邮箱查找数据库是否存在该用户
+		Student student = null;
+		if(null != account){
+		student =	studentDao.findByNameAndEmail(account);
+		}
+		return student;
+	}
+
+	public Student findByEmail(String stuemail) {
+		Student byEmail = studentDao.findByEmail(stuemail);
+		return byEmail;
+	}
 }

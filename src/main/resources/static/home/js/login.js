@@ -74,8 +74,8 @@ $(document).ready(function() {
 		}else{
 			$.ajax({
 				type: "POST" ,
-				url: "check_sn",
-				data: "sn=" + $("#login-sn").val() + '&flag=' + 1,
+				url: "check_nameAndEmail",
+				data: "account=" + $("#login-sn").val() + '&flag=' + 1,
 				dataType:'json',
 				success: function(res) {
 					//alert("res:"+res+"\n"+"resLength:"+res.length)
@@ -176,14 +176,14 @@ $(document).ready(function() {
 	
 	
 	$('#reg_button').click(function() {
-		var sqq = /^[1-9]{1}[0-9]{4,9}$/;
-		regusersn=/^\d{12}$/;
-		if ($('#user-sn').val().length!=12 || regusersn.test($('#user-sn').val()) == false) {
+		var sqq = /^[1-9]{1}[0-9]{4,9}$/;   //QQ号正则
+		regusersn=/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/;  //邮箱正则
+		if ($('#user-sn').val().length>=64 || regusersn.test($('#user-sn').val()) == false) {
 			$('#user-sn').focus().css({
 				border: "1px solid red",
 				boxShadow: "0 0 2px red"
 			});
-			$('#userCue').html("<font color='red'><b>请输入12位数字学号</b></font>");
+			$('#userCue').html("<font color='red'><b>请输入正确的邮箱格式</b></font>");
 			return false;
 		}else {
 			$('#user-sn').css({

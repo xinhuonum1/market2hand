@@ -35,4 +35,7 @@ public interface StudentDao extends JpaRepository<Student, Long> {
 	@Modifying
 	@Query("update Student s set s.password = :password where s.stuemail = :stuemail")
     void updatePasswordByEmail(@Param("stuemail") String stuemail, @Param("password") String password);
+
+	@Query("select s from Student s where stuemail = :account or nickname=:account")
+	Student findByNameAndEmail(@Param("account") String account);
 }

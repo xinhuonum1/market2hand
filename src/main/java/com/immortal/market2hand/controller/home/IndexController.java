@@ -16,6 +16,7 @@ import com.immortal.market2hand.util.MD5SecretUtil;
 import com.immortal.market2hand.util.SessionUtil;
 import com.immortal.market2hand.util.ValidateEntityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -104,6 +105,18 @@ public class IndexController {
 		Student student = studentService.findBySn(sn);
 		return Result.success(student == null);
 	}
+
+	/**
+	 * 通过昵称和邮箱检查用户是否存在
+	 * @return
+	 */
+	@RequestMapping(value="/check_nameAndEmail",method=RequestMethod.POST)
+	@ResponseBody
+	public Result<Boolean> checkNameAndEmail(@RequestParam(name="account",required=true)String account){
+		Student student = studentService.findByNameAndEmail(account);
+		return Result.success(student == null);
+	}
+
 	
 	/**
 	 * 用户注册表单提交
@@ -118,7 +131,7 @@ public class IndexController {
 			return Result.error(validate);
 		}
 		//基本验证通过
-		if(studentService.findBySn(student.getSn()) != null){
+		if(studentService.findByEmail(student.getStuemail()) != null){
 			return Result.error(CodeMsg.HOME_STUDENT_REGISTER_SN_EXIST);
 		}
 		//用md5加密算法对用户密码加密
@@ -171,24 +184,23 @@ public class IndexController {
 	
 	/**
 	 * 用户登录表单提交
-	 * @param sn
 	 * @param password
 	 * @return
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	@ResponseBody
-	public Result<Boolean> login(@RequestParam(name="sn",required=true)String sn,
+	public Result<Boolean> login(@RequestParam(name="account",required=true)String account,
 			@RequestParam(name="password",required=true)String password){
-		Student student = studentService.findBySn(sn);
+		Student student = studentService.findByNameAndEmail(account);
 		if(student == null){
 			return Result.error(CodeMsg.HOME_STUDENT_REGISTER_SN_EXIST);
 		}
-		student = studentService.save(student);
+		//student = studentService.save(student);
 		if(student == null){
 			return Result.error(CodeMsg.HOME_STUDENT_SN_NO_EXIST);
 		}
 		//表示学号存在，验证密码是否正确
-		if(!student.getPassword().equals(password)){
+		if(!student.getPassword().equals(MD5SecretUtil.md5(password))){
 			return Result.error(CodeMsg.HOME_STUDENT_PASSWORD_ERROR);
 		}
 		//验证用户状态是否被冻结

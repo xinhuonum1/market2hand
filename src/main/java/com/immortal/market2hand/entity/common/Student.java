@@ -27,8 +27,8 @@ public class Student extends BaseEntity{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@ValidateEntity(required=true,requiredLeng=true,minLength=6,maxLength=18,errorRequiredMsg="学号不能为空!",errorMinLengthMsg="学号长度需大于6!",errorMaxLengthMsg="学号长度不能大于18!")
-	@Column(name="sn",nullable=false,length=18,unique=true)
+	@ValidateEntity(required=false)
+	@Column(name="sn" ,length=18)
 	private String sn;//学生学号
 	
 	@ValidateEntity(required=true,requiredLeng=true,minLength=6,maxLength=255,errorRequiredMsg="密码不能为空!",errorMinLengthMsg="密码长度需大于6!")
