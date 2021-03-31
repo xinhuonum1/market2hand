@@ -45,7 +45,7 @@ public class GoodsService {
 	 * @param goods
 	 * @return
 	 */
-	public PageBean<Goods> findlist(PageBean<Goods> pageBean, Goods goods){
+	public PageBean<Goods> findlist(PageBean<Goods> pageBean, Goods goods,String order){
 		
 		Specification<Goods> specification = new Specification<Goods>() {
 			/**
@@ -72,7 +72,11 @@ public class GoodsService {
 				return predicate;
 			}
 		};
-		Sort sort = Sort.by(Direction.DESC, "createTime","recommend","flag","viewNumber");
+		Sort sort = Sort.by(Direction.DESC, "sellPrice");
+		//默认按照出售价格降序排列
+		if(order.equals("asc")){
+			 sort = Sort.by(Direction.ASC, "sellPrice");
+		}
 		PageRequest pageable = PageRequest.of(pageBean.getCurrentPage()-1, pageBean.getPageSize(), sort);
 		Page<Goods> findAll = goodsDao.findAll(specification, pageable);
 		pageBean.setContent(findAll.getContent());

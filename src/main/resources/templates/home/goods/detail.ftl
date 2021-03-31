@@ -55,6 +55,14 @@
                         	</div>
                         	<div class="value">${goods.student.school!"该用户未填写学校信息"}</div>
                         </li>
+						<li class="ershou-place">
+							<div class="name">
+								<span>库存数量</span>
+							</div>
+							<div class="value">
+								<span>${goods.needNumber!""}</span>
+							</div>
+						</li>
                         <li class="ershou-cert">
                         	<div class="name">
                         		<span>学院</span>

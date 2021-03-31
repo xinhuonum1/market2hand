@@ -46,7 +46,7 @@ public interface GoodsDao extends JpaRepository<Goods, Long>,JpaSpecificationExe
 	 * @param pageSize
 	 * @return
 	 */
-	@Query(value="SELECT * from ylrc_goods where goods_category_id IN :cids and `status` = 1 ORDER BY create_time desc,flag desc,recommend desc limit :offset,:pageSize",nativeQuery=true)
+	@Query(value="SELECT * from ylrc_goods where goods_category_id IN :cids and `status` = 1 ORDER BY sell_price DESC limit :offset,:pageSize",nativeQuery=true)
 	List<Goods> findList(@Param("cids") List<Long> cids, @Param("offset") Integer offset, @Param("pageSize") Integer pageSize);
 	
 	/**

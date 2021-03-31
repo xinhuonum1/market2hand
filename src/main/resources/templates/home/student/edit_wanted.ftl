@@ -54,6 +54,14 @@
                                     <input class="price required" id="sellPrice" name="sellPrice" value="${wantedGoods.sellPrice}" type="number" tips="请填写期望价格"></div>
                             </div>
                         </div>
+                        <div class="form-item l">
+                            <div class="form-key">
+                                <span>所求数量</span></div>
+                            <div class="form-value">
+                                <div class="form-input-wr">
+                                    <input class="required" id="needNumber" name="needNumber" value="${wantedGoods.needNumber}" type="number" tips="请填写所求数量"></div>
+                            </div>
+                        </div>
                     </div>
                    	<input class="form-submit" id="submit-btn" type="button" value="发布" />
                   </div>
@@ -94,5 +102,6 @@ $(document).ready(function(){
 
 });
 
-</script>	
+</script>
+</body>
 </html>

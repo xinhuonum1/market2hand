@@ -76,6 +76,15 @@
                                     <input class="price required" id="sellPrice" name="sellPrice" value="" type="number" tips="请填写出售价格"></div>
                             </div>
                         </div>
+
+                        <div class="form-item l">
+                            <div class="form-key">
+                                <span>库存数量</span></div>
+                            <div class="form-value">
+                                <div class="form-input-wr">
+                                    <input class="required" id="needNumber" name="needNumber" value="" type="number" tips="请填写库存数量"></div>
+                            </div>
+                        </div>
                         
                           
 

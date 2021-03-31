@@ -50,6 +50,18 @@ public class WantedGoods extends BaseEntity{
 	@Column(name="view_number",nullable=false,length=8)
 	private int viewNumber = 0;//物品浏览量
 
+
+	@Column(name="need_number",nullable=false,length=200)
+	private int needNumber = 0;//物品浏览量
+
+	public int getNeedNumber() {
+		return needNumber;
+	}
+
+	public void setNeedNumber(int needNumber) {
+		this.needNumber = needNumber;
+	}
+
 	public String getName() {
 		return name;
 	}

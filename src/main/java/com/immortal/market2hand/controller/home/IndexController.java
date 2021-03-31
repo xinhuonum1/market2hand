@@ -49,13 +49,15 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value="/index")
-	public String index(Model model, PageBean<Goods> pageBean, Goods goods){
+	public String index(HttpServletRequest request,Model model, PageBean<Goods> pageBean, Goods goods,
+						@RequestParam(name = "order",defaultValue = "desc") String order){
 		pageBean.setPageSize(12);
 		goods.setStatus(Goods.GOODS_STATUS_UP);
-		model.addAttribute("pageBean", goodsService.findlist(pageBean, goods));
+		model.addAttribute("pageBean", goodsService.findlist(pageBean, goods,order));
 		model.addAttribute("name",goods.getName());
 		model.addAttribute("newsList",newsService.findList(3));
 		model.addAttribute(SessionConstant.SESSION_USER_AUTH_KEY, AppConfig.ORDER_AUTH);
+		request.getSession().setAttribute("order",order);
 		return "home/index/index";
 	}
 	

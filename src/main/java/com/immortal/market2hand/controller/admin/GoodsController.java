@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * 后台物品管理控制器
@@ -38,13 +40,12 @@ public class GoodsController {
 	
 	/**
 	 * 物品管理列表页面
-	 * @param name
 	 * @param pageBean
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value="/list")
-	public String list(Goods goods, PageBean<Goods> pageBean, Model model){
+	public String list(Goods goods, PageBean<Goods> pageBean, Model model, HttpServletRequest request){
 		if(goods.getStudent() != null && goods.getStudent().getSn() != null){
 			Student student = studentService.findBySn(goods.getStudent().getSn());
 			if(student != null){
@@ -57,12 +58,17 @@ public class GoodsController {
 				goods.setGoodsCategory(goodsCategorys.get(0));
 			}
 		}
+
+		String order = (String) request.getSession().getAttribute("order");
+		if(null == order){
+			order = "desc";
+		}
 		goods.setStatus(-1);
 		model.addAttribute("title", "物品列表");
 		model.addAttribute("name", goods.getName());
 		model.addAttribute("goodsCategoryName", goods.getGoodsCategory() == null ? null : goods.getGoodsCategory().getName());
 		model.addAttribute("sn", goods.getStudent() == null ? null : goods.getStudent().getSn());
-		model.addAttribute("pageBean", goodsService.findlist(pageBean, goods));
+		model.addAttribute("pageBean", goodsService.findlist(pageBean, goods,order));
 		return "admin/goods/list";
 	}
 	

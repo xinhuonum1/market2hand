@@ -50,7 +50,7 @@ td{
                         <li> <a tabindex="-1" href="javascript:void(0)" data-field="title">学号</a> </li>
                       </ul>
                     </div>
-                    <input type="text" class="form-control" value="${sn!""}" name="sn" placeholder="请输入学生学号">
+                    <input type="text" class="form-control" value="${stuemail!""}" name="stuemail" placeholder="请输入邮箱号码">
                   	<span class="input-group-btn">
                       <button class="btn btn-primary" type="submit">搜索</button>
                     </span>
@@ -98,7 +98,7 @@ td{
                     		<img src="/home/imgs/avatar1.png" width="60px" height="60px">
                     		</#if>
                         </td>
-                        <td style="vertical-align:middle;">${student.sn}</td>
+                        <td style="vertical-align:middle;">${student.stuemail}</td>
                         <td style="vertical-align:middle;">${student.nickname!""}</td>
                         <td style="vertical-align:middle;">${student.password}</td>
                         <td style="vertical-align:middle;">
@@ -127,19 +127,19 @@ td{
                   <#if pageBean.currentPage == 1>
                   <li class="disabled"><span>«</span></li>
                   <#else>
-                  <li><a href="list?sn=${sn!""}&currentPage=1">«</a></li>
+                  <li><a href="list?stuemail=${stuemail!""}&currentPage=1">«</a></li>
                   </#if>
                   <#list pageBean.currentShowPage as showPage>
                   <#if pageBean.currentPage == showPage>
                   <li class="active"><span>${showPage}</span></li>
                   <#else>
-                  <li><a href="list?sn=${sn!""}&currentPage=${showPage}">${showPage}</a></li>
+                  <li><a href="list?stuemail=${stuemail!""}&currentPage=${showPage}">${showPage}</a></li>
                   </#if>
                   </#list>
                   <#if pageBean.currentPage == pageBean.totalPage>
                   <li class="disabled"><span>»</span></li>
                   <#else>
-                  <li><a href="list?sn=${sn!""}&currentPage=${pageBean.totalPage}">»</a></li>
+                  <li><a href="list?stuemail=${stuemail!""}&currentPage=${pageBean.totalPage}">»</a></li>
                   </#if>
                   <li><span>共${pageBean.totalPage}页,${pageBean.total}条数据</span></li>
                 </ul>

@@ -102,6 +102,7 @@
 <script src="/home/js/index.js"></script>
 <script src="/admin/js/bootstrap.min.js"></script>
 <script src="/home/js/layui.all.js"></script>
+<script src="/home/js/layer.js"></script>
 <script type="text/javascript">
     layui.use('carousel', function(){
         var carousel = layui.carousel;

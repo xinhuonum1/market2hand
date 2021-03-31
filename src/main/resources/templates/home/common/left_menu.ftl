@@ -10,6 +10,12 @@
                     <img src="/home/imgs/12.png" alt="全部商品"></i>
                 <h3>全部商品</h3>
            </a>
+            <div class="sub-nav">
+                <span>
+                    <a href="/home/index/index?order=asc" target="_top">价格升序查看&nbsp;&nbsp;↑</a>
+                    <a href="/home/index/index?order=desc" target="_top">价格降序查看&nbsp;&nbsp;↓</a>
+                </span>
+            </div>
         </li>
       	<#list goodsCategorys as goodsCategory>
         <#if goodsCategory.parent??>
