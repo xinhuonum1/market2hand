@@ -6,6 +6,8 @@
 <link rel="icon" href="/home/imgs/favicon.ico" type="image/x-icon">
 <link media="all" href="/home/css/product_detail.css" type="text/css" rel="stylesheet">
 <link media="all" href="/home/css/index.css" type="text/css" rel="stylesheet">
+	<link media="all" href="/home/css/layui.css" type="text/css" rel="stylesheet">
+	<link media="all" href="/home/css/layer.css" type="text/css" rel="stylesheet">
 </head>
 <body>
   <#include "../common/top_header.ftl"/>
@@ -77,13 +79,19 @@
                         		<span>卖家</span>
                         	</div>
                         	<div class="value">
-                        		<span class="value-name" id="userid">${goods.student.nickname!goods.student.sn}</span>
+                        		<span class="value-name" id="userid">${goods.student.nickname!goods.student.stuemail}</span>
                         	</div>
                         </li>
                     </ul>
-                    <div id="buy-button" >
+                    <div id="buy-button" class="div-inline">
             			<a style="color: white;cursor:pointer;" > 联系卖家</a>
        	 			</div>
+					<div id="buy-button" class="div-inline">
+						<a style="color: white;cursor:pointer;" href="javascript:void(0);" onclick="collect(${goods.id});" > 收藏</a>
+					</div>
+					<div id="buy-button" class="div-inline">
+						<a style="color: white;cursor:pointer;" onclick="buyGoods(${goods.id});"> 立即购买</a>
+					</div>
                     <div class="complain">
                     	<a href="javascript:void(0);" onclick="report(${goods.id});">•&nbsp;&nbsp;&nbsp;&nbsp;举报&nbsp;&nbsp;&nbsp;&nbsp;•</a>
                     </div>
@@ -146,12 +154,12 @@
 												<img class="avatar" src="/home/imgs/avatar1.png" alt="头像"/>
 												</#if>
 												<div class="commentator" style="padding-left:55px;padding-bottom:5px;color:rgb(75, 192, 165);border-bottom: 1px dashed rgb(75, 192, 165);">
-													<b>${comment.student.nickname!comment.student.sn}</b>
+													<b>${comment.student.nickname!comment.student.stuemail}</b>
 													<#if comment.replyTo??><span class="rpy-to">${comment.replyTo}</span></#if>
 												</div>
 												<p class="comment" style="padding-left:55px;padding-bottom:5px;padding-top:5px;">${comment.content}<font style="float:right;">${comment.createTime}</font></p>
 												<div class="man" style="padding-left:55px;padding-bottom:5px;">
-													<a class="rpl" href="#comment-content" data-reply="${comment.content}" data-name="${comment.student.nickname!comment.student.sn}">回复</a>
+													<a class="rpl" href="#comment-content" data-reply="${comment.content}" data-name="${comment.student.nickname!comment.student.stuemail}">回复</a>
 												</div>
 											</div>
 											</#list>
@@ -171,6 +179,8 @@
 <script  src="/home/js/jquery-3.1.1.min.js"></script>
 <script src="/home/js/common.js"></script>
 <script src="/home/js/add.js"></script>
+  <script src="/home/js/layui.all.js"></script>
+  <script src="/home/js/layer.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
    $("#buy-button").click(function(){
@@ -180,10 +190,13 @@ $(document).ready(function(){
 		alert("请您先登录");
 		window.location.href="/home/index/login";
 		</#if>
-	})
+	});
    $("#to-login-btn").click(function(){
    		window.location.href="/home/index/login";
    });
+
+
+
 
 	$("#submit-comment-btn").click(function(){
 		var content = $("#comment-content").val();
@@ -219,5 +232,23 @@ function report(id){
 		alert('举报成功');
 	});
 }
-</script>	
+
+//收藏按钮处理事件
+function collect(id){
+	ajaxRequest('/home/student/addCollectionGoods','post',{'goodsId':id},function(){
+		alert('收藏成功！');
+		window.location.reload();
+	})
+}
+
+//收藏按钮处理事件
+function buyGoods(id){
+	ajaxRequest('/home/student/addOrdersGoods','post',{'goodsId':id},function(){
+		alert('购买成功！');
+		window.location.reload();
+	})
+}
+
+</script>
+</body>
 </html>

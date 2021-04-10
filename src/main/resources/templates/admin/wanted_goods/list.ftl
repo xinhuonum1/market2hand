@@ -44,14 +44,14 @@ td{
                   <div class="input-group">
                     <div class="input-group-btn">
                       <button class="btn btn-default dropdown-toggle" id="search-btn" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">
-                      	<#if sn??>学生学号<#elseif name??>名称<#else>搜索条件</#if> <span class="caret"></span>
+                      	<#if stuemail??>用户邮箱<#elseif name??>名称<#else>搜索条件</#if> <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
                         <li> <a tabindex="-1" href="javascript:void(0)" data-field="name">名称</a> </li>
-                        <li> <a tabindex="-1" href="javascript:void(0)" data-field="student.sn">学生学号</a> </li>
+                        <li> <a tabindex="-1" href="javascript:void(0)" data-field="student.stuemail">用户邮箱</a> </li>
                       </ul>
                     </div>
-                    <input type="text" class="form-control" value="${name!sn!""}" id="search-value" name="<#if sn??>student.sn<#else>name</#if>" placeholder="请输入搜索值">
+                    <input type="text" class="form-control" value="${name!stuemail!""}" id="search-value" name="<#if stuemail??>student.stuemail<#else>name</#if>" placeholder="请输入搜索值">
                   	<span class="input-group-btn">
                       <button class="btn btn-primary" type="submit">搜索</button>
                     </span>
@@ -71,7 +71,7 @@ td{
                           </label>
                         </th>
                         <th>求购物品名称</th>
-                        <th>发布者(学号)</th>
+                        <th>发布者(邮箱)</th>
                         <th>期望价格</th>
                         <th>期望交易地点</th>
                         <th>添加时间</th>
@@ -90,7 +90,7 @@ td{
                         	${wantedGoods.name}
                         </td>
                         <td style="vertical-align:middle;">
-                        	${wantedGoods.student.sn}
+                        	${wantedGoods.student.stuemail}
                         </td>
                         <td style="vertical-align:middle;">
                         ${wantedGoods.sellPrice}
@@ -113,19 +113,19 @@ td{
                   <#if pageBean.currentPage == 1>
                   <li class="disabled"><span>«</span></li>
                   <#else>
-                  <li><a href="list?<#if sn??>student.sn<#else>name</#if>=${name!sn!""}&currentPage=1">«</a></li>
+                  <li><a href="list?<#if stuemail??>student.stuemail<#else>name</#if>=${name!stuemail!""}&currentPage=1">«</a></li>
                   </#if>
                   <#list pageBean.currentShowPage as showPage>
                   <#if pageBean.currentPage == showPage>
                   <li class="active"><span>${showPage}</span></li>
                   <#else>
-                  <li><a href="list?<#if sn??>student.sn<#else>name</#if>=${name!sn!""}&currentPage=${showPage}">${showPage}</a></li>
+                  <li><a href="list?<#if stuemail??>student.stuemail<#else>name</#if>=${name!stuemail!""}&currentPage=${showPage}">${showPage}</a></li>
                   </#if>
                   </#list>
                   <#if pageBean.currentPage == pageBean.totalPage>
                   <li class="disabled"><span>»</span></li>
                   <#else>
-                  <li><a href="list?<#if sn??>student.sn<#else>name</#if>=${name!sn!""}&currentPage=${pageBean.totalPage}">»</a></li>
+                  <li><a href="list?<#if stuemail??>student.stuemail<#else>name</#if>=${name!stuemail!""}&currentPage=${pageBean.totalPage}">»</a></li>
                   </#if>
                   <li><span>共${pageBean.totalPage}页,${pageBean.total}条数据</span></li>
                 </ul>

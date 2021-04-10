@@ -6,6 +6,8 @@
 <link rel="icon" href="/home/imgs/favicon.ico" type="image/x-icon">
 <link media="all" href="/home/css/index.css" type="text/css" rel="stylesheet">
 <link media="all" href="/home/css/user_center.css" type="text/css" rel="stylesheet">
+    <link media="all" href="/home/css/layui.css" type="text/css" rel="stylesheet">
+    <link media="all" href="/home/css/layer.css" type="text/css" rel="stylesheet">
 </head>
 <body>
   <#include "../common/top_header.ftl"/>
@@ -81,8 +83,8 @@
 			</div>
             <div id="account_info">
                 <ul class="infos">
-                    <li>学号</li>
-                    <li class="right_info">${ylrc_student.sn}</li>
+                    <li>邮箱</li>
+                    <li class="right_info">${ylrc_student.stuemail}</li>
                 </ul>
             </div>
             <div id="base_info">
@@ -165,8 +167,9 @@
                  <div class="enshr_each" id="">  
 	                    <div class="enshr_info">
 	                        <h2><a href="../goods/detail?id=${goods.id}" title="${goods.name}">${goods.name}</a></h2>
-	                        <p style="overflow:hidden;">${goods.content}</p>
-	                        <div class="enshr_state">
+	                        <p style="white-space :nowrap ;overflow:hidden;text-overflow:ellipsis;">${goods.content}</p>
+	                        <div class="enshr_state" style="margin-top: 10px">
+                                <div >
 	                        <span id="prostate">
 	                        	状态：
 	                        	<#if goods.status ==1>
@@ -186,6 +189,8 @@
 	                        	</#if>
 	                        </span>
 	                        &nbsp;&nbsp;<span id="prostate">上架日期：${goods.updateTime}</span>
+                                </div>
+                                <div style="margin-top: 10px">
 	                            <#if goods.status == 1>
 	                            <span class="enshrine_it" onclick="sellout(${goods.id});">确认售出</span>
 	                            <#elseif goods.status == 3>
@@ -202,9 +207,9 @@
 	                            <span class="enshrine_it make_edition" onclick="refresh(${goods.id},0);">取消擦亮</span>
 	                            </#if>
 	                            <a href="edit_goods?id=${goods.id}" target="_top">
-	                                <span class="enshrine_it  make_edition">编辑</span>
+	                                <span class="enshrine_it make_edition">编辑</span>
 	                            </a>
-	                            
+	                            </div>
 	                        </div>
 	                    </div>
 	                    <a href="../goods/detail?id=${goods.id}">
@@ -215,6 +220,7 @@
                 </#if>
               </div>
         </div>
+
         <ul id="middle_nav" class="clearfix">
    		<li class="on"><a href="">我发布的求购商品</a></li>
 		</ul>
@@ -249,6 +255,129 @@
                 </#if>
               </div>
         </div>
+
+        <ul id="middle_nav" class="clearfix">
+            <li class="on"><a href="">我收藏的商品</a></li>
+        </ul>
+        <div id="my_products">
+            <div id="onsale_pro">
+                <#list collectionStudents as students>
+                <div class="layui-card">
+                    <div class="layui-card-header">卖家：${students.nickname}</div>
+                        <div id="my_products">
+                            <div id="onsale_pro">
+                                <#if collectorList??>
+                                    <#list collectorList as collectors>
+                                        <#if collectors.student.id == students.id>
+                                        <div class="enshr_each" id="">
+                                            <div class="enshr_info">
+                                                <h2><a href="../goods/detail?id=${collectors.id}" title="${collectors.name}">${collectors.name}</a></h2>
+                                                <p style="white-space :nowrap ;overflow:hidden;text-overflow:ellipsis;">${collectors.content}</p>
+                                                <div class="enshr_state" style="margin-top: 10px">
+                                                    <div >
+	                        <span id="prostate">
+	                        	状态：
+	                        	<#if collectors.status ==1>
+                                    <font style="color:rgb(75, 192, 165);">正在出售</font>
+	                        	<#elseif collectors.status ==2>
+                                    <font style="color:red;">已下架</font>
+                                <#else>
+                                    <font style="color:#4BC00F;">已售出</font>
+                                </#if>
+	                        </span>|
+                                                        <span id="prostate">
+	                        	是否推荐：
+	                        	<#if collectors.recommend ==1>
+                                    <font style="color:rgb(75, 192, 165);">是</font>
+	                        	<#else>
+                                    <font style="color:red;">否</font>
+                                </#if>
+	                        </span>
+                                                        &nbsp;&nbsp;<span id="prostate">上架日期：${collectors.updateTime}</span>
+                                                    </div>
+                                                    <div style="margin-top: 10px">
+                                                        <a href="javascript:void(0);" onclick="removeCollection(${collectors.id})" target="_top">
+                                                            <span class="enshrine_it make_edition">取消收藏</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="../goods/detail?id=${collectors.id}">
+                                                <img class="enshr_ph" src="/photo/view?filename=${collectors.photo}" alt="${collectors.name}">
+                                            </a>
+                                        </div>
+                                        </#if>
+                                    </#list>
+
+                                </#if>
+                            </div>
+                        </div>
+                </div>
+                </#list>
+            </div>
+            </div>
+
+        <ul id="middle_nav" class="clearfix">
+            <li class="on"><a href="">我购买的商品</a></li>
+        </ul>
+        <div id="my_products">
+            <div id="onsale_pro">
+                <#list ordersStudents as students>
+                    <div class="layui-card">
+                        <div class="layui-card-header">卖家：${students.nickname}</div>
+                        <div id="my_products">
+                            <div id="onsale_pro">
+                                <#if ordersList??>
+                                    <#list ordersList as collectors>
+                                        <#if collectors.student.id == students.id>
+                                            <div class="enshr_each" id="">
+                                                <div class="enshr_info">
+                                                    <h2><a href="../goods/detail?id=${collectors.id}" title="${collectors.name}">${collectors.name}</a></h2>
+                                                    <p style="white-space :nowrap ;overflow:hidden;text-overflow:ellipsis;">${collectors.content}</p>
+                                                    <div class="enshr_state" style="margin-top: 10px">
+                                                        <div >
+	                        <span id="prostate">
+	                        	状态：
+	                        	<#if collectors.status ==1>
+                                    <font style="color:rgb(75, 192, 165);">正在出售</font>
+	                        	<#elseif collectors.status ==2>
+                                    <font style="color:red;">已下架</font>
+                                <#else>
+                                    <font style="color:#4BC00F;">已售出</font>
+                                </#if>
+	                        </span>|
+                                                            <span id="prostate">
+	                        	是否推荐：
+	                        	<#if collectors.recommend ==1>
+                                    <font style="color:rgb(75, 192, 165);">是</font>
+	                        	<#else>
+                                    <font style="color:red;">否</font>
+                                </#if>
+	                        </span>
+                                                            &nbsp;&nbsp;<span id="prostate">上架日期：${collectors.updateTime}</span>
+                                                        </div>
+                                                        <div style="margin-top: 10px">
+                                                            <a href="javascript:void(0);" onclick="removeCollection(${collectors.id})" target="_top">
+                                                                <span class="enshrine_it make_edition">删除订单</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a href="../goods/detail?id=${collectors.id}">
+                                                    <img class="enshr_ph" src="/photo/view?filename=${collectors.photo}" alt="${collectors.name}">
+                                                </a>
+                                            </div>
+                                        </#if>
+                                    </#list>
+
+                                </#if>
+                            </div>
+                        </div>
+                    </div>
+                </#list>
+            </div>
+        </div>
+
         <ul id="middle_nav" class="clearfix">
    		<li class="on"><a href="">我举报的商品</a></li>
 		</ul>
@@ -277,6 +406,7 @@
               </div>
         </div>
     </div>
+    </div>
 </div>
  	<#include "../common/right_menu.ftl"/>
 	<#include "../common/bottom_footer.ftl"/> 
@@ -284,6 +414,8 @@
 <script src="/home/js/common.js"></script>
 <script src="/home/js/user_center.js"></script>
 <script src="/home/js/add.js"></script>
+  <script src="/home/js/layui.all.js"></script>
+  <script src="/home/js/layer.js"></script>
 <script>
 function delWanted(id){
 	if (!confirm('删除后不可恢复，确定要删除？')) {
@@ -303,6 +435,13 @@ function delReport(id){
 		window.location.reload();
 	});
 }
+function removeCollection(id){
+    ajaxRequest('removeCollection','post',{'id':id},function(){
+        alert("取消收藏成功！");
+        window.location.reload();
+    })
+}
+
 $(document).ready(function(){
 	ajaxRequest('get_stats','post',{},function(rst){
 		$("#goodsTotal").text(rst.data.goodsTotal);
@@ -368,4 +507,5 @@ $(document).ready(function(){
     });
 });
 </script>
+</body>
 </html>

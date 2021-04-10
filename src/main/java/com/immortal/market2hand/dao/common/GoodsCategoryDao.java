@@ -22,6 +22,8 @@ public interface GoodsCategoryDao extends JpaRepository<GoodsCategory, Long> {
 	 * @return
 	 */
 	List<GoodsCategory> findByParentIsNull();
+
+
 	
 	/**
 	 * 获取所有的二级分类

@@ -37,7 +37,6 @@ public class CommentController {
 	
 	/**
 	 * 物品评论管理列表页面
-	 * @param name
 	 * @param pageBean
 	 * @param model
 	 * @return

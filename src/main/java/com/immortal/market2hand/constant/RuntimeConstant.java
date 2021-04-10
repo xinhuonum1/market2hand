@@ -25,7 +25,8 @@ public class RuntimeConstant {
 			"/home/index/forgetPwd",
 			"/getStudentByEmail",
 			"/home/index/updatePassword",
-			"/home/index/forgetPassword"
+			"/home/index/forgetPassword",
+			"/findGoodsByCollectors"
 		);
 	//后台权限拦截器无需拦截的url
 	public static List<String> authorityExcludePathPatterns = Arrays.asList(
@@ -47,7 +48,8 @@ public class RuntimeConstant {
 			"/home/index/forgetPwd",
 			"/getStudentByEmail",
 			"/home/index/updatePassword",
-			"/home/index/forgetPassword"
+			"/home/index/forgetPassword",
+			"/findGoodsByCollectors"
 		);
 	//前台全局拦截器无需拦截的url
 	public static List<String> homeGlobalExcludePathPatterns = Arrays.asList(
@@ -57,7 +59,8 @@ public class RuntimeConstant {
 			"/cpacha/generate_cpacha",
 			"/photo/view",
 			"/home/index/forgetPassword",
-			"/home/index/updatePassword"
+			"/home/index/updatePassword",
+			"/findGoodsByCollectors"
 		);
 	//前台登录拦截器无需拦截的url
 	public static List<String> homeLoginExcludePathPatterns = Arrays.asList(
@@ -73,6 +76,7 @@ public class RuntimeConstant {
 			"/home/css/**",
 			"/home/imgs/**",
 			"/home/index/forgetPassword",
-			"/home/index/updatePassword"
+			"/home/index/updatePassword",
+			"/findGoodsByCollectors"
 		);
 }

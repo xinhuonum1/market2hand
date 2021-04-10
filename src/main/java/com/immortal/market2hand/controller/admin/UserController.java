@@ -47,6 +47,7 @@ public class UserController {
 		model.addAttribute("pageBean", userService.findList(user, pageBean));
 		return "admin/user/list";
 	}
+
 	
 	/**
 	 * 新增用户页面
@@ -148,4 +149,6 @@ public class UserController {
 		operaterLogService.add("添加用户，用户ID：" + id);
 		return Result.success(true);
 	}
+
+
 }

@@ -6,6 +6,8 @@
 <link rel="icon" href="/home/imgs/favicon.ico" type="image/x-icon">
 <link media="all" href="/home/css/product_detail.css" type="text/css" rel="stylesheet">
 <link media="all" href="/home/css/index.css" type="text/css" rel="stylesheet">
+    <link media="all" href="/home/css/layui.css" type="text/css" rel="stylesheet">
+    <link media="all" href="/home/css/layer.css" type="text/css" rel="stylesheet">
 </head>
 <body>
   <#include "../common/top_header.ftl"/>
@@ -24,10 +26,13 @@
 <script  src="/home/js/jquery-3.1.1.min.js"></script>
 <script src="/home/js/common.js"></script>
 <script src="/home/js/add.js"></script>
+  <script src="/home/js/layui.all.js"></script>
+  <script src="/home/js/layer.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
    
 });
 
-</script>	
+</script>
+</body>
 </html>

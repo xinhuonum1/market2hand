@@ -1,8 +1,6 @@
 package com.immortal.market2hand.controller.home;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.immortal.market2hand.bean.CodeMsg;
 import com.immortal.market2hand.bean.Result;
@@ -12,6 +10,7 @@ import com.immortal.market2hand.service.common.*;
 import com.immortal.market2hand.util.SessionUtil;
 import com.immortal.market2hand.util.ValidateEntityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 
 
 /**
@@ -42,6 +42,8 @@ public class HomeStudentController {
 	private ReportGoodsService reportGoodsService;
 	@Autowired
 	private CommentService commentService;
+	@Resource
+	private CollectorsService collectorsService;
 	/**
 	 * 学生登录主页
 	 * @param model
@@ -50,9 +52,34 @@ public class HomeStudentController {
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public String index(Model model){
 		Student loginedStudent = (Student) SessionUtil.get(SessionConstant.SESSION_STUDENT_LOGIN_KEY);
+		List<Goods> collectorsList = collectorsService.findCollectorsByStudent(loginedStudent.getId());
+		List<Goods> ordersList = collectorsService.findOrdersByStudent(loginedStudent.getId());
+
 		model.addAttribute("goodsList", goodsService.findByStudent(loginedStudent));
 		model.addAttribute("wantedGoodsList", wantedGoodsService.findByStudent(loginedStudent));
 		model.addAttribute("reportGoodsList", reportGoodsService.findByStudent(loginedStudent));
+		model.addAttribute("collectorList",collectorsList);
+		model.addAttribute("ordersList",ordersList);
+		ArrayList<Student> students = new ArrayList<>();
+		Set hs = new HashSet<Student>();
+		for (Goods g: collectorsList
+			 ) {
+			if(hs.add(g.getStudent())){
+			students.add(g.getStudent());
+			}
+		}
+		model.addAttribute("collectionStudents",students);
+
+		ArrayList<Student> orderStu = new ArrayList<>();
+		Set os = new HashSet<Student>();
+		for (Goods g: ordersList
+		) {
+			if(os.add(g.getStudent())){
+				orderStu.add(g.getStudent());
+			}
+		}
+		model.addAttribute("ordersStudents",orderStu);
+
 		return "home/student/index";
 	}
 	
@@ -449,5 +476,46 @@ public class HomeStudentController {
 		}
 		SessionUtil.set(SessionConstant.SESSION_STUDENT_LOGIN_KEY, loginedStudent);
 		return Result.success(true);
+	}
+
+	/**
+	*
+	*收藏商品
+	*@return:{@link null}
+	*@author:immor
+	*@date:2021/4/6
+	*/
+	@RequestMapping("/addCollectionGoods")
+	@ResponseBody
+	public Result addCollectionGoods(@RequestParam(name = "goodsId",required = true) Long id){
+
+		if(null == id){
+
+			return Result.error(CodeMsg.DATA_ERROR);
+		}
+		Result result =	collectorsService.addCollectionByGoodsId(id);
+		return result;
+	}
+
+	@RequestMapping("/removeCollection")
+	@ResponseBody
+	public Result removeCollection(@RequestParam(name = "id",required = true)Long id){
+		if(null == id){
+
+			return Result.error(CodeMsg.DATA_ERROR);
+		}
+		Result result =	collectorsService.removeCollectionById(id);
+		return result;
+	}
+
+	@RequestMapping("/addOrdersGoods")
+	@ResponseBody
+	public Result addOrdersGoods(@RequestParam(name = "goodsId",required = true) Long id){
+		if(null == id){
+			return Result.error(CodeMsg.DATA_ERROR);
+		}
+
+	Result result =	collectorsService.addOrdersGoods( id);
+		return result;
 	}
 }

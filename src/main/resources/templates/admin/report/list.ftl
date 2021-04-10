@@ -44,15 +44,15 @@ td{
                   <div class="input-group">
                     <div class="input-group-btn">
                       <button class="btn btn-default dropdown-toggle" id="search-btn" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">
-                      	<#if name??>物品名称<#elseif sn??>学生学号<#elseif content??>举报原因<#else>搜索条件</#if> <span class="caret"></span>
+                      	<#if name??>物品名称<#elseif stuemail??>用户邮箱<#elseif content??>举报原因<#else>搜索条件</#if> <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
                         <li> <a tabindex="-1" href="javascript:void(0)" data-field="content">举报原因</a> </li>
-                        <li> <a tabindex="-1" href="javascript:void(0)" data-field="student.sn">学生学号</a> </li>
+                        <li> <a tabindex="-1" href="javascript:void(0)" data-field="student.stuemail">用户邮箱</a> </li>
                         <li> <a tabindex="-1" href="javascript:void(0)" data-field="goods.name">物品名称</a> </li>
                       </ul>
                     </div>
-                    <input type="text" class="form-control" value="${content!sn!name!""}" id="search-value" name="<#if name??>goods.name<#elseif sn??>student.sn<#else>content</#if>" placeholder="请输入搜索值">
+                    <input type="text" class="form-control" value="${content!stuemail!name!""}" id="search-value" name="<#if name??>goods.name<#elseif stuemail??>student.stuemail<#else>content</#if>" placeholder="请输入搜索值">
                   	<span class="input-group-btn">
                       <button class="btn btn-primary" type="submit">搜索</button>
                     </span>
@@ -73,7 +73,7 @@ td{
                         </th>
                         <th>物品图片</th>
                         <th>物品名称</th>
-                        <th>举报者(学号)</th>
+                        <th>举报者(邮箱)</th>
                         <th style="width:256px;">举报原因</th>
                         <th>举报时间</th>
                       </tr>
@@ -96,7 +96,7 @@ td{
                         	<a href="/home/goods/detail?id=${reportGoods.goods.id}" target="_blank">${reportGoods.goods.name}</a>
                         </td>
                         <td style="vertical-align:middle;">
-                        	${reportGoods.student.sn}
+                        	${reportGoods.student.stuemail}
                         </td>
                         <td style="vertical-align:middle;">
                         ${reportGoods.content}
@@ -115,19 +115,19 @@ td{
                   <#if pageBean.currentPage == 1>
                   <li class="disabled"><span>«</span></li>
                   <#else>
-                  <li><a href="list?<#if name??>goods.name<#elseif sn??>student.sn<#else>content</#if>=${name!sn!content!""}&currentPage=1">«</a></li>
+                  <li><a href="list?<#if name??>goods.name<#elseif stuemail??>student.stuemail<#else>content</#if>=${name!stuemail!content!""}&currentPage=1">«</a></li>
                   </#if>
                   <#list pageBean.currentShowPage as showPage>
                   <#if pageBean.currentPage == showPage>
                   <li class="active"><span>${showPage}</span></li>
                   <#else>
-                  <li><a href="list?<#if name??>goods.name<#elseif sn??>student.sn<#else>content</#if>=${name!sn!content!""}&currentPage=${showPage}">${showPage}</a></li>
+                  <li><a href="list?<#if name??>goods.name<#elseif stuemail??>student.stuemail<#else>content</#if>=${name!stuemail!content!""}&currentPage=${showPage}">${showPage}</a></li>
                   </#if>
                   </#list>
                   <#if pageBean.currentPage == pageBean.totalPage>
                   <li class="disabled"><span>»</span></li>
                   <#else>
-                  <li><a href="list?<#if name??>goods.name<#elseif sn??>student.sn<#else>content</#if>=${name!sn!content!""}&currentPage=${pageBean.totalPage}">»</a></li>
+                  <li><a href="list?<#if name??>goods.name<#elseif stuemail??>student.stuemail<#else>content</#if>=${name!stuemail!content!""}&currentPage=${pageBean.totalPage}">»</a></li>
                   </#if>
                   <li><span>共${pageBean.totalPage}页,${pageBean.total}条数据</span></li>
                 </ul>

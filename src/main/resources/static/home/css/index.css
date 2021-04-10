@@ -270,3 +270,7 @@ div.center { position: relative; }
 #have_login { height: 50px; }
 .avatar { float: left; border: 1px solid rgb(75, 192, 165); padding: 3px; width: 40px; height: 40px; border-radius: 100%; }
 .person_name { float: left; color: rgb(0, 172, 144); margin: 15px 0px 0px 15px; max-width: 75px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+
+.div-inline{
+	display: inline;
+}

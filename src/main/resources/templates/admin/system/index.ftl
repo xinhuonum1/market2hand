@@ -133,17 +133,19 @@
         </div>
          <#if ylrc_auth != 1>
         <div class="row" id="show-copyright">
+          <#if false>
           <div class="col-sm-12 col-lg-12">
             <div class="card bg-primary">
               <div class="card-body clearfix">
                 <div class="pull-left">
                   <p class="h6 text-white m-t-0">${showTipsText}</p>
-                  <p class="h3 text-white m-b-0">${showTipsUrlText}<a href="${showTipsUtl}" style="color:red;margin-right:20px;">https://www.yuanlrc.com</a><a href="javascript:void(0)" class="btn btn-danger" id="order-auth-btn">${showTipsBtnText}</a></p>
+                  <p class="h3 text-white m-b-0">${showTipsUrlText}<a href="${showTipsUtl}" style="color:red;margin-right:20px;">https://www.immortal.com</a><a href="javascript:void(0)" class="btn btn-danger" id="order-auth-btn">${showTipsBtnText}</a></p>
                   <p class="h5 text-white m-b-0"></p>
                 </div>
               </div>
             </div>
           </div>
+          </#if>
         </div>
         </#if>
         <div class="row">

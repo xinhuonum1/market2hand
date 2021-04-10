@@ -68,10 +68,13 @@
 		        			</#if>
 		        		</a>
 			        	<div  style="display:inline;"  class="person_name">
-			        		<a href="../student/index" id="id-btn">Hi：${ylrc_student.nickname!ylrc_student.stuemail}</a>
+			        		<a href="../student/index" id="id-btn" style="font-size: 16px;">${ylrc_student.nickname!ylrc_student.stuemail}</a>
 			        	</div>
+						<div  style="display:inline;"  class="person_name">
+							<a href="../index/logout" style="font-size: 16px" id="imessage-btn">消息<span class="layui-badge layui-bg-green">9</span> </a>
+						</div>
 			        	<div  style="display:inline;"  class="person_name">
-			        		<a href="../index/logout" id="log-btn">&nbsp;&nbsp;&nbsp;&nbsp;退出</a>
+			        		<a href="../index/logout" style="font-size: 16px" id="log-btn">&nbsp;&nbsp;&nbsp;&nbsp;退出</a>
 			        	</div>
 			        </div>
 		        </div>

@@ -1,6 +1,7 @@
 package com.immortal.market2hand.dao.common;
 
 import java.util.List;
+import java.util.Map;
 
 import com.immortal.market2hand.entity.common.Goods;
 import com.immortal.market2hand.entity.common.Student;
@@ -72,4 +73,26 @@ public interface GoodsDao extends JpaRepository<Goods, Long>,JpaSpecificationExe
 	 */
 	@Query(value="select * from ylrc_goods where name like %:name%",nativeQuery=true)
 	List<Goods> findListByName(@Param("name") String name);
+
+	/**
+	 * 类别销售额统计
+	 * @return
+	 */
+	@Query(value="select gc.parent_id goods_category_id ,gc.name,sc.countSell sell_price ,sc.time update_time from " +
+			"ylrc_goods_category gc, " +
+			"(select goods_category_id id, update_time time, SUM(sell_price*need_number) countSell " +
+			"FROM ylrc_goods " +
+			"where status = 3 group by goods_category_id ) sc where gc.id = sc.id",nativeQuery=true)
+	List<Map<String,Object>> findListBySell();
+
+	/**
+	*
+	*年度销售额统计
+	*@return:{@link null}
+	*@author:immor
+	*@date:2021/4/10
+	*/
+	@Query( value = "select year(update_time) as years,(sell_price*need_number) sellPrice from ylrc_goods where `status`=3",nativeQuery = true)
+	List<Map<String,Object>> findListByYears();
+
 }
