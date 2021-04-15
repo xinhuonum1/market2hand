@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 public class MD5SecretUtil {
-	public static String md5(String plainText){
+    public static String md5(String plainText) {
         String encryStr = null;
         if (plainText != null && !"".equals(plainText)) {
             try {

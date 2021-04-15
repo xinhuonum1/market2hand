@@ -2,12 +2,12 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <title>${siteName!""}|数据备份管理-${title!""}</title>
     <#include "../common/header.ftl"/>
     <style>
-        td{
-            vertical-align:middle;
+        td {
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -20,7 +20,8 @@
 
             <!-- logo -->
             <div id="logo" class="sidebar-header">
-                <a href="index.html"><img src="/admin/images/logo-sidebar.png" title="${siteName!""}" alt="${siteName!""}" /></a>
+                <a href="index.html"><img src="/admin/images/logo-sidebar.png" title="${siteName!""}"
+                                          alt="${siteName!""}"/></a>
             </div>
             <div class="lyear-layout-sidebar-scroll">
                 <#include "../common/left-menu.ftl"/>
@@ -48,7 +49,8 @@
 
                                 <div id="charMain" style="width: 600px;height:400px;display: inline-block"></div>
 
-                                <div id="lineMain" style="width: 600px;height:400px ;display: inline-block;margin-left: 50px"></div>
+                                <div id="lineMain"
+                                     style="width: 600px;height:400px ;display: inline-block;margin-left: 50px"></div>
                             </div>
                         </div>
                     </div>
@@ -73,7 +75,7 @@
     var lineDom = document.getElementById('lineMain');
     var myLine = echarts.init(lineDom);
 
-    function findCategory(url){
+    function findCategory(url) {
         // 异步加载数据
         $.get('/admin/statistics/getMyChartData').done(function (data) {
             myChart.setOption({
@@ -82,13 +84,13 @@
                 },
                 tooltip: {},
                 legend: {
-                    data:['销售额']
+                    data: ['销售额']
                 },
                 xAxis: {
                     data: data.categories,
-                    axisLabel:{
+                    axisLabel: {
                         interval: 0,
-                        rotate:40
+                        rotate: 40
                     }
                 },
                 yAxis: {},
@@ -101,9 +103,9 @@
             myLine.setOption({
                 xAxis: {
                     type: 'category',
-                    axisLabel:{
+                    axisLabel: {
                         interval: 0,
-                        rotate:40
+                        rotate: 40
                     },
                     data: data.categories
                 },
@@ -119,7 +121,8 @@
         });
 
     }
-        // 异步加载数据
+
+    // 异步加载数据
     $.get('/admin/statistics/getMyChartData').done(function (data) {
         myChart.setOption({
             title: {
@@ -127,13 +130,13 @@
             },
             tooltip: {},
             legend: {
-                data:['销售额']
+                data: ['销售额']
             },
             xAxis: {
                 data: data.categories,
-                axisLabel:{
+                axisLabel: {
                     interval: 0,
-                    rotate:40
+                    rotate: 40
                 }
             },
             yAxis: {},
@@ -146,9 +149,9 @@
         myLine.setOption({
             xAxis: {
                 type: 'category',
-                axisLabel:{
+                axisLabel: {
                     interval: 0,
-                    rotate:40
+                    rotate: 40
                 },
                 data: data.categories
             },
@@ -163,7 +166,7 @@
         })
     });
 
-    function findTime(url){
+    function findTime(url) {
         // 异步加载数据
         $.get('/admin/statistics/getMyChartDataByTime').done(function (data) {
             myChart.setOption({
@@ -172,13 +175,13 @@
                 },
                 tooltip: {},
                 legend: {
-                    data:['销售额']
+                    data: ['销售额']
                 },
                 xAxis: {
                     data: data.categories,
-                    axisLabel:{
+                    axisLabel: {
                         interval: 0,
-                        rotate:40
+                        rotate: 40
                     }
                 },
                 yAxis: {},
@@ -191,9 +194,9 @@
             myLine.setOption({
                 xAxis: {
                     type: 'category',
-                    axisLabel:{
+                    axisLabel: {
                         interval: 0,
-                        rotate:40
+                        rotate: 40
                     },
                     data: data.categories
                 },
@@ -208,7 +211,6 @@
             })
         });
     }
-
 
 
 </script>

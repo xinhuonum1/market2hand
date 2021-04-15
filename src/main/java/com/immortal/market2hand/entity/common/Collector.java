@@ -11,25 +11,24 @@ import javax.persistence.*;
  * @date: 2021/4/2
  */
 @Entity
-@Table(name="ylrc_collector")
+@Table(name = "ylrc_collector")
 @EntityListeners(AuditingEntityListener.class)
-public class Collector extends BaseEntity{
+public class Collector extends BaseEntity {
     private static final long serialVersionUID = 1L;
     private static final int COLLECTORS_STATUS_ENABLE = 1;
     private static final int COLLECTORS_STATUS_UNABLE = 0;
 
     @ManyToOne
-    @JoinColumn(name="collectors_id")
+    @JoinColumn(name = "collectors_id")
     private Student collectors;//所属学生
 
     @ManyToOne
-    @JoinColumn(name="goods_id")
+    @JoinColumn(name = "goods_id")
     private Goods goods;//所属学生
 
-    @ValidateEntity(required=false)
-    @Column(name="status",length=1)
+    @ValidateEntity(required = false)
+    @Column(name = "status", length = 1)
     private int status = COLLECTORS_STATUS_ENABLE;//收藏状态，默认可用
-
 
 
     public Student getCollectors() {

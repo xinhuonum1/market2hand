@@ -27,10 +27,10 @@ public class CollectorsController {
 
     @RequestMapping("/findGoodsByCollectors")
     @ResponseBody
-    public Result findCollectorsByStudent(){
+    public Result findCollectorsByStudent() {
         //获取当前登录的用户
-        Student student = (Student)SessionUtil.get(SessionConstant.SESSION_STUDENT_LOGIN_KEY);
-        if(null == student){
+        Student student = (Student) SessionUtil.get(SessionConstant.SESSION_STUDENT_LOGIN_KEY);
+        if (null == student) {
             return Result.error(CodeMsg.USER_SESSION_EXPIRED);
         }
         long id = student.getId();
@@ -38,17 +38,17 @@ public class CollectorsController {
 
         HashMap<String, List<Goods>> map = new HashMap<>();
 
-        for (Goods g: goodsList
+        for (Goods g : goodsList
         ) {
             ArrayList<Goods> goods = new ArrayList<Goods>();
 
             String nickname = g.getStudent().getNickname();
-            if (map.containsKey(nickname)){
+            if (map.containsKey(nickname)) {
                 map.get(nickname).add(g);
                 continue;
             }
             goods.add(g);
-            map.put(nickname,goods);
+            map.put(nickname, goods);
         }
         /*Set<Map.Entry<Long, List<Goods>>> entries = map.entrySet();
         for (Map.Entry<Long, List<Goods>> entry:entries

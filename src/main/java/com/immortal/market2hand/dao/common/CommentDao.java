@@ -16,36 +16,40 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface CommentDao extends JpaRepository<Comment, Long>,JpaSpecificationExecutor<Comment> {
-	/**
-	 * 根据id获取
-	 * @return
-	 */
-	@Query("select c from Comment c where id = :id")
-	Comment find(@Param("id") Long id);
-	
-	/**
-	 * 根据学生查询
-	 * @param student
-	 * @return
-	 */
-	List<Comment> findByStudent(Student student);
-	
-	/**
-	 * 根据物品查询
-	 * @param goods
-	 * @return
-	 */
-	List<Comment> findByGoods(Goods goods);
-	
-	/**
-	 * 根据学生id和商品id查询
-	 * @param id
-	 * @param userId
-	 * @return
-	 */
-	@Query("select c from Comment c where c.goods.id = :goodsId and c.student.id = :studentId")
-	Comment find(@Param("goodsId") Long goodsId, @Param("studentId") Long studentId);
-	
-	
+public interface CommentDao extends JpaRepository<Comment, Long>, JpaSpecificationExecutor<Comment> {
+    /**
+     * 根据id获取
+     *
+     * @return
+     */
+    @Query("select c from Comment c where id = :id")
+    Comment find(@Param("id") Long id);
+
+    /**
+     * 根据学生查询
+     *
+     * @param student
+     * @return
+     */
+    List<Comment> findByStudent(Student student);
+
+    /**
+     * 根据物品查询
+     *
+     * @param goods
+     * @return
+     */
+    List<Comment> findByGoods(Goods goods);
+
+    /**
+     * 根据学生id和商品id查询
+     *
+     * @param id
+     * @param userId
+     * @return
+     */
+    @Query("select c from Comment c where c.goods.id = :goodsId and c.student.id = :studentId")
+    Comment find(@Param("goodsId") Long goodsId, @Param("studentId") Long studentId);
+
+
 }

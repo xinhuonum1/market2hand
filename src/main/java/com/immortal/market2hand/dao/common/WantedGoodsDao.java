@@ -1,4 +1,5 @@
 package com.immortal.market2hand.dao.common;
+
 import java.util.List;
 
 import com.immortal.market2hand.entity.common.Student;
@@ -13,22 +14,23 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
-
 @Repository
-public interface WantedGoodsDao extends JpaRepository<WantedGoods, Long>,JpaSpecificationExecutor<WantedGoods>{
-	
-	/**
-	 * 根据id获取
-	 * @param id
-	 * @return
-	 */
-	@Query("select wg from WantedGoods wg where id = :id")
-	WantedGoods find(@Param("id") Long id);
-	
-	/**
-	 * 根据学生信息查询
-	 * @param student
-	 * @return
-	 */
-	public List<WantedGoods> findByStudent(Student student);
+public interface WantedGoodsDao extends JpaRepository<WantedGoods, Long>, JpaSpecificationExecutor<WantedGoods> {
+
+    /**
+     * 根据id获取
+     *
+     * @param id
+     * @return
+     */
+    @Query("select wg from WantedGoods wg where id = :id")
+    WantedGoods find(@Param("id") Long id);
+
+    /**
+     * 根据学生信息查询
+     *
+     * @param student
+     * @return
+     */
+    public List<WantedGoods> findByStudent(Student student);
 }

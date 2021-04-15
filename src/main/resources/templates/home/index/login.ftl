@@ -139,40 +139,40 @@
             , content: '<div class="layui-inline" style="margin-left: 110px">' +
                 '<span id=mySpan style="text-size:18pt;color:red;"></span></div>' +
                 '<div class="layui-inline" style="margin-bottom: 15px">' +
-                            '<label class="layui-form-label">邮箱</label>' +
+                '<label class="layui-form-label">邮箱</label>' +
                 '               <div class="layui-input-inline">' +
                 '                   <input type="text" name="email" id="emailVal" ' +
                 '                           placeholder="请输入注册时的邮箱" ' +
-                                            'autocomplete="off" ' +
-                                            'class="layui-input" style="width: 290px"><div id="alertMsg1"></div>' +
+                'autocomplete="off" ' +
+                'class="layui-input" style="width: 290px"><div id="alertMsg1"></div>' +
                 '                   </div></div>' +
                 '           <div class="layui-inline"><label class="layui-form-label">验证码</label>' +
-                                '      <div class="layui-input-inline">' +
-                                '<input type="text" name="verifyCode" id="verifyCode" ' +
-                                'placeholder="请输入验证码" ' +
-                                'autocomplete="off" ' +
-                                'class="layui-input" style="width: 160px;float: left"></div>' +
+                '      <div class="layui-input-inline">' +
+                '<input type="text" name="verifyCode" id="verifyCode" ' +
+                'placeholder="请输入验证码" ' +
+                'autocomplete="off" ' +
+                'class="layui-input" style="width: 160px;float: left"></div>' +
                 '<div class="col-xs-5" style="float: right">' +
                 '            <img src="/cpacha/generate_cpacha?vl=4&fs=25&w=128&h=40&method=admin_login" id="captcha" onclick="this.src=this.src+\'&d=\'+Math.random();" style="cursor: pointer;"  title="点击刷新" alt="captcha">' +
                 '          </div></div>'
             , yes: function (index) {
                 let emailVal = $("#emailVal").val();
                 let verifyCode = $("#verifyCode").val();
-                if(emailVal.left != 0 && verifyCode != 0){
-                let data=[];
-                    var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
-                data[0] = emailVal;
-                    data[1]=verifyCode
-                    if(emailVal.match(myReg)){
+                if (emailVal.left != 0 && verifyCode != 0) {
+                    let data = [];
+                    var myReg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+                    data[0] = emailVal;
+                    data[1] = verifyCode
+                    if (emailVal.match(myReg)) {
                         $.ajax({
-                            type:'post',
-                            url:'forgetPwd'
-                            ,data:{forgetPwd:data}
-                            , traditional:true
-                            ,success:function (resp) {
+                            type: 'post',
+                            url: 'forgetPwd'
+                            , data: {forgetPwd: data}
+                            , traditional: true
+                            , success: function (resp) {
                                 //查看数据库是否有该邮箱地址 如果有 则提交 如果无 则提示未注册
-                                if(null != resp){
-                                    if(resp.code == -10006){
+                                if (null != resp) {
+                                    if (resp.code == -10006) {
                                         alert(resp.msg);
                                         layer.close(index);
                                         return;
@@ -183,15 +183,15 @@
                             }
                         });
 
-                    }else{
-                       document.getElementById("mySpan").innerText = "请输入正确格式的邮箱地址"
+                    } else {
+                        document.getElementById("mySpan").innerText = "请输入正确格式的邮箱地址"
                     }
-                }else{
+                } else {
                     document.getElementById("mySpan").innerText = "邮箱或验证码不能为空"
                 }
 
             },
-            btn2:function (index,layero) {
+            btn2: function (index, layero) {
                 layer.close(index);
             }
         });

@@ -26,31 +26,31 @@ public class StatisticsService {
     @Resource
     private GoodsDao goodsDao;
 
-    public List<String> findByParentIsNull(){
+    public List<String> findByParentIsNull() {
         List<GoodsCategory> parentIsNull = goodsCategoryDao.findByParentIsNull();
         ArrayList<String> categoryList = new ArrayList<>();
-        for (GoodsCategory gc:parentIsNull
-             ) {
+        for (GoodsCategory gc : parentIsNull
+        ) {
             categoryList.add(gc.getName());
         }
         return categoryList;
     }
 
-    public List<Float> findListBySell(){
+    public List<Float> findListBySell() {
         List<Map<String, Object>> listBySell = goodsDao.findListBySell();
         List<GoodsCategory> byParentIsNull = goodsCategoryDao.findByParentIsNull();
 
         ArrayList<Float> floats = new ArrayList<>();
 
-        for (GoodsCategory s:byParentIsNull
+        for (GoodsCategory s : byParentIsNull
         ) {
             float sum = 0f;
-            for (Map<String,Object> m:listBySell
+            for (Map<String, Object> m : listBySell
             ) {
-                if(m.get("goods_category_id").equals(BigInteger.valueOf(s.getId()))){
+                if (m.get("goods_category_id").equals(BigInteger.valueOf(s.getId()))) {
                     Double sell_price = (Double) m.get("sell_price");
                     float v = sell_price.floatValue();
-                    sum = sum+ v;
+                    sum = sum + v;
                 }
             }
             floats.add(sum);
@@ -59,22 +59,22 @@ public class StatisticsService {
         return floats;
     }
 
-    public StatisticData findListByYears(){
+    public StatisticData findListByYears() {
         StatisticData statisticData = new StatisticData();
 
         List<String> years = new ArrayList<>();
         List<Float> price = new ArrayList<>();
-        for( int i  = 2015;i<=2021;i++){
+        for (int i = 2015; i <= 2021; i++) {
             years.add(Integer.toString(i));
         }
         List<Map<String, Object>> listByYears = goodsDao.findListByYears();
-        for (String year:years
+        for (String year : years
         ) {
             float sum = 0;
-            for (Map<String,Object> map:listByYears
+            for (Map<String, Object> map : listByYears
             ) {
-                if(map.get("years").equals(BigInteger.valueOf(Long.valueOf(year)))){
-                   Double sellPrice =  (Double)map.get("sellPrice");
+                if (map.get("years").equals(BigInteger.valueOf(Long.valueOf(year)))) {
+                    Double sellPrice = (Double) map.get("sellPrice");
                     float floatValue = sellPrice.floatValue();
                     sum += floatValue;
                 }
@@ -86,4 +86,4 @@ public class StatisticsService {
 
         return statisticData;
     }
-    }
+}

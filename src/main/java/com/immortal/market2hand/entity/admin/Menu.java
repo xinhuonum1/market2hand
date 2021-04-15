@@ -12,115 +12,109 @@ import com.immortal.market2hand.entity.common.BaseEntity;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
-
 /**
  * 后台菜单实体类
- * @author Administrator
  *
+ * @author Administrator
  */
 @Entity
-@Table(name="ylrc_menu")
+@Table(name = "ylrc_menu")
 @EntityListeners(AuditingEntityListener.class)
 public class Menu extends BaseEntity {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@ValidateEntity(required=true,requiredLeng=true,minLength=1,maxLength=18,errorRequiredMsg="菜单名称不能为空!",errorMinLengthMsg="菜单名称长度需大于1!",errorMaxLengthMsg="菜单名称长度不能大于18!")
-	@Column(name="name",nullable=false,length=18)
-	private String name;//菜单名称
-	
-	@ManyToOne
-	@JoinColumn(name="parent_id")
-	private Menu parent;//菜单父分类
-	
-	@ValidateEntity(required=false)
-	@Column(name="url",length=128)
-	private String url;//菜单url
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@ValidateEntity(required=false)
-	@Column(name="icon",length=32)
-	private String icon;//菜单图标icon
-	
-	@Column(name="sort",nullable=false,length=4)
-	private Integer sort = 0;//菜单顺序，默认升序排列,默认是0
+    @ValidateEntity(required = true, requiredLeng = true, minLength = 1, maxLength = 18, errorRequiredMsg = "菜单名称不能为空!", errorMinLengthMsg = "菜单名称长度需大于1!", errorMaxLengthMsg = "菜单名称长度不能大于18!")
+    @Column(name = "name", nullable = false, length = 18)
+    private String name;//菜单名称
 
-	@Column(name="is_bitton",nullable=false)
-	private boolean isButton = false;//是否是按钮
-	
-	@Column(name="is_show",nullable=false)
-	private boolean isShow = true;//是否显示
-	
-	public String getName() {
-		return name;
-	}
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Menu parent;//菜单父分类
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @ValidateEntity(required = false)
+    @Column(name = "url", length = 128)
+    private String url;//菜单url
 
-	public Menu getParent() {
-		return parent;
-	}
+    @ValidateEntity(required = false)
+    @Column(name = "icon", length = 32)
+    private String icon;//菜单图标icon
 
-	public void setParent(Menu parent) {
-		this.parent = parent;
-	}
+    @Column(name = "sort", nullable = false, length = 4)
+    private Integer sort = 0;//菜单顺序，默认升序排列,默认是0
 
-	public String getUrl() {
-		return url;
-	}
+    @Column(name = "is_bitton", nullable = false)
+    private boolean isButton = false;//是否是按钮
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    @Column(name = "is_show", nullable = false)
+    private boolean isShow = true;//是否显示
 
-	public String getIcon() {
-		return icon;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Integer getSort() {
-		return sort;
-	}
+    public Menu getParent() {
+        return parent;
+    }
 
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
+    public void setParent(Menu parent) {
+        this.parent = parent;
+    }
 
-	
-	
-	public boolean isButton() {
-		return isButton;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setButton(boolean isButton) {
-		this.isButton = isButton;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public boolean isShow() {
-		return isShow;
-	}
+    public String getIcon() {
+        return icon;
+    }
 
-	public void setShow(boolean isShow) {
-		this.isShow = isShow;
-	}
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
-	@Override
-	public String toString() {
-		return "Menu [name=" + name + ", parent=" + parent + ", url=" + url
-				+ ", icon=" + icon + ", sort=" + sort + ", isButton="
-				+ isButton + ", isShow=" + isShow + "]";
-	}
+    public Integer getSort() {
+        return sort;
+    }
 
-	
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
 
-	
-	
-	
+
+    public boolean isButton() {
+        return isButton;
+    }
+
+    public void setButton(boolean isButton) {
+        this.isButton = isButton;
+    }
+
+    public boolean isShow() {
+        return isShow;
+    }
+
+    public void setShow(boolean isShow) {
+        this.isShow = isShow;
+    }
+
+    @Override
+    public String toString() {
+        return "Menu [name=" + name + ", parent=" + parent + ", url=" + url
+                + ", icon=" + icon + ", sort=" + sort + ", isButton="
+                + isButton + ", isShow=" + isShow + "]";
+    }
+
+
 }

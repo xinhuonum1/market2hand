@@ -1,4 +1,5 @@
 package com.immortal.market2hand.service.common;
+
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -27,95 +28,98 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReportGoodsService {
 
-	@Autowired
-	private ReportGoodsDao reportGoodsDao;
-	
-	/**
-	 * 物品添加/编辑，当id不为空时，则编辑
-	 * @return
-	 */
-	public ReportGoods save(ReportGoods reportGoods){
-		return reportGoodsDao.save(reportGoods);
-	}
-	
-	
-	
-	
-	/**
-	 * 物品举报信息删除
-	 * @param id
-	 */
-	public void delete(Long id){
-		reportGoodsDao.deleteById(id);
-	}
-	
-	
-	
-	/**
-	 * 根据学生查找物品
-	 * @param student
-	 * @return
-	 */
-	public List<ReportGoods> findByStudent(Student student){
-		return reportGoodsDao.findByStudent(student);
-	}
-	
-	/**
-	 * 根据学生id和物品id查询
-	 * @param id
-	 * @param studentId
-	 * @return
-	 */
-	public ReportGoods find(Long goodsId,Long studentId){
-		return reportGoodsDao.find(goodsId, studentId);
-	}
-	
-	/**
-	 * 根据id查询
-	 * @param id
-	 * @return
-	 */
-	public ReportGoods find(Long id){
-		return reportGoodsDao.find(id);
-	}
-	
-	/**
-	 * 物品举报信息搜索
-	 * @param pageBean
-	 * @param reportGoods
-	 * @param goodsList
-	 * @return
-	 */
-	public PageBean<ReportGoods> findlist(PageBean<ReportGoods> pageBean, ReportGoods reportGoods, List<Goods> goodsList){
-		
-		Specification<ReportGoods> specification = new Specification<ReportGoods>() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
+    @Autowired
+    private ReportGoodsDao reportGoodsDao;
 
-			@Override
-			public Predicate toPredicate(Root<ReportGoods> root,
-					CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-				Predicate predicate = criteriaBuilder.like(root.get("content"), "%" + (reportGoods.getContent() == null ? "" : reportGoods.getContent()) + "%");
-				if(reportGoods.getStudent() != null && reportGoods.getStudent().getId() != null){
-					Predicate eqal1 = criteriaBuilder.equal(root.get("student"), reportGoods.getStudent().getId());
-					predicate = criteriaBuilder.and(predicate,eqal1);
-				}
-				if(goodsList != null && goodsList.size() >0 ){
-					In<Object> in = criteriaBuilder.in(root.get("goods"));
-					in.value(goodsList);
-					predicate = criteriaBuilder.and(predicate,in);
-				}
-				return predicate;
-			}
-		};
-		Sort sort = Sort.by(Direction.DESC, "createTime");
-		PageRequest pageable = PageRequest.of(pageBean.getCurrentPage()-1, pageBean.getPageSize(), sort);
-		Page<ReportGoods> findAll = reportGoodsDao.findAll(specification, pageable);
-		pageBean.setContent(findAll.getContent());
-		pageBean.setTotal(findAll.getTotalElements());
-		pageBean.setTotalPage(findAll.getTotalPages());
-		return pageBean;
-	}
+    /**
+     * 物品添加/编辑，当id不为空时，则编辑
+     *
+     * @return
+     */
+    public ReportGoods save(ReportGoods reportGoods) {
+        return reportGoodsDao.save(reportGoods);
+    }
+
+
+    /**
+     * 物品举报信息删除
+     *
+     * @param id
+     */
+    public void delete(Long id) {
+        reportGoodsDao.deleteById(id);
+    }
+
+
+    /**
+     * 根据学生查找物品
+     *
+     * @param student
+     * @return
+     */
+    public List<ReportGoods> findByStudent(Student student) {
+        return reportGoodsDao.findByStudent(student);
+    }
+
+    /**
+     * 根据学生id和物品id查询
+     *
+     * @param id
+     * @param studentId
+     * @return
+     */
+    public ReportGoods find(Long goodsId, Long studentId) {
+        return reportGoodsDao.find(goodsId, studentId);
+    }
+
+    /**
+     * 根据id查询
+     *
+     * @param id
+     * @return
+     */
+    public ReportGoods find(Long id) {
+        return reportGoodsDao.find(id);
+    }
+
+    /**
+     * 物品举报信息搜索
+     *
+     * @param pageBean
+     * @param reportGoods
+     * @param goodsList
+     * @return
+     */
+    public PageBean<ReportGoods> findlist(PageBean<ReportGoods> pageBean, ReportGoods reportGoods, List<Goods> goodsList) {
+
+        Specification<ReportGoods> specification = new Specification<ReportGoods>() {
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public Predicate toPredicate(Root<ReportGoods> root,
+                                         CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Predicate predicate = criteriaBuilder.like(root.get("content"), "%" + (reportGoods.getContent() == null ? "" : reportGoods.getContent()) + "%");
+                if (reportGoods.getStudent() != null && reportGoods.getStudent().getId() != null) {
+                    Predicate eqal1 = criteriaBuilder.equal(root.get("student"), reportGoods.getStudent().getId());
+                    predicate = criteriaBuilder.and(predicate, eqal1);
+                }
+                if (goodsList != null && goodsList.size() > 0) {
+                    In<Object> in = criteriaBuilder.in(root.get("goods"));
+                    in.value(goodsList);
+                    predicate = criteriaBuilder.and(predicate, in);
+                }
+                return predicate;
+            }
+        };
+        Sort sort = Sort.by(Direction.DESC, "createTime");
+        PageRequest pageable = PageRequest.of(pageBean.getCurrentPage() - 1, pageBean.getPageSize(), sort);
+        Page<ReportGoods> findAll = reportGoodsDao.findAll(specification, pageable);
+        pageBean.setContent(findAll.getContent());
+        pageBean.setTotal(findAll.getTotalElements());
+        pageBean.setTotalPage(findAll.getTotalPages());
+        return pageBean;
+    }
 }

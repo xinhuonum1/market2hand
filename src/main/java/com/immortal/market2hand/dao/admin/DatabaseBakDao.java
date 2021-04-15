@@ -9,19 +9,20 @@ import org.springframework.stereotype.Repository;
 
 /**
  * 数据库备份处理层
- * @author Administrator
  *
+ * @author Administrator
  */
 @Repository
-public interface DatabaseBakDao extends JpaRepository<DatabaseBak, Long>{
+public interface DatabaseBakDao extends JpaRepository<DatabaseBak, Long> {
 
-	/**
-	 * 根据id来查询
-	 * @param id
-	 * @return
-	 */
-	@Query("select db from DatabaseBak db where id = :id")
-	DatabaseBak find(@Param("id") Long id);
-	
-	
+    /**
+     * 根据id来查询
+     *
+     * @param id
+     * @return
+     */
+    @Query("select db from DatabaseBak db where id = :id")
+    DatabaseBak find(@Param("id") Long id);
+
+
 }

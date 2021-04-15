@@ -21,24 +21,27 @@ import java.util.List;
 public class statisticsController {
     @Resource
     private StatisticsService statisticsService;
+
     /**
      * 报表分析 /admin/statistics/statistics
+     *
      * @param model
      * @return
      */
-    @RequestMapping(value="/statistics")
-    public String statistics(Model model){
+    @RequestMapping(value = "/statistics")
+    public String statistics(Model model) {
         model.addAttribute("title", "统计报表");
         return "admin/statistics/statistics";
     }
 
     /**
      * 类别销售额统计分析
+     *
      * @return
      */
     @RequestMapping("/getMyChartData")
     @ResponseBody
-    public StatisticData getMyChartData(){
+    public StatisticData getMyChartData() {
         List<String> byParentIsNull = statisticsService.findByParentIsNull();
         List<Float> listBySelled = statisticsService.findListBySell();
         StatisticData statisticData = new StatisticData();
@@ -49,11 +52,12 @@ public class statisticsController {
 
     /**
      * 年度销售额统计分析
+     *
      * @return
      */
     @RequestMapping("/getMyChartDataByTime")
     @ResponseBody
-    public StatisticData getMyLineData(){
+    public StatisticData getMyLineData() {
         return statisticsService.findListByYears();
     }
 

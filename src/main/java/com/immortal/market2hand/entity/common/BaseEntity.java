@@ -16,54 +16,54 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * 基础实体公共属性
- * @author Administrator
  *
+ * @author Administrator
  */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity implements Serializable{
+public class BaseEntity implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Column(name="id",nullable=false,length=11)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Id
-	private Long id;//唯一id
-	
-	@Column(name="create_time",nullable=false)
-	@CreatedDate
-	private Date createTime;//创建时间
-	
-	@Column(name="update_time",nullable=false)
-	@LastModifiedDate
-	private Date updateTime;//更新时间
-	
-	public Date getCreateTime() {
-		return createTime;
-	}
+    @Column(name = "id", nullable = false, length = 11)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private Long id;//唯一id
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    @Column(name = "create_time", nullable = false)
+    @CreatedDate
+    private Date createTime;//创建时间
 
-	public Long getId() {
-		return id;
-	}
+    @Column(name = "update_time", nullable = false)
+    @LastModifiedDate
+    private Date updateTime;//更新时间
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-	
-	
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+
 }

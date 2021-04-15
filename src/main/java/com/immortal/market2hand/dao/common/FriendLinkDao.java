@@ -12,12 +12,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface FriendLinkDao extends JpaRepository<FriendLink, Long> {
-	
-	/**
-	 * 根据id查找
-	 * @param id
-	 * @return
-	 */
-	@Query("select fl from FriendLink fl where id = :id")
-	FriendLink find(@Param("id") Long id);
+
+    /**
+     * 根据id查找
+     *
+     * @param id
+     * @return
+     */
+    @Query("select fl from FriendLink fl where id = :id")
+    FriendLink find(@Param("id") Long id);
 }

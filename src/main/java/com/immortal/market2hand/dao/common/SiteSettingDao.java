@@ -11,12 +11,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SiteSettingDao extends JpaRepository<SiteSetting, Long> {
-	
-	/**
-	 * 根据id查找
-	 * @param id
-	 * @return
-	 */
-	@Query("select ss from SiteSetting ss where id = 1")
-	SiteSetting find();
+
+    /**
+     * 根据id查找
+     *
+     * @param id
+     * @return
+     */
+    @Query("select ss from SiteSetting ss where id = 1")
+    SiteSetting find();
 }

@@ -12,12 +12,12 @@ import java.util.Map.Entry;
 
 /**
  * https请求
- * @author llq
  *
+ * @author llq
  */
 public class HttpUtil {
 
-	public static String sendPost(String curl, Map<String, String> headerPara,String param) {
+    public static String sendPost(String curl, Map<String, String> headerPara, String param) {
         String result = "";// 返回的结果
         BufferedReader in = null;// 读取响应输入流
         try {
@@ -32,15 +32,15 @@ public class HttpUtil {
             connection.setInstanceFollowRedirects(true); //重定向，一般浏览器才需要
             connection.setRequestProperty("Content-Type",
                     "application/x-www-form-urlencoded;charset=utf-8"); //设置服务器解析数据的方式
-            if(headerPara != null){
-            	for(Entry<String, String> entry : headerPara.entrySet()){
-            		connection.setRequestProperty(entry.getKey(), entry.getValue());
-            	}
+            if (headerPara != null) {
+                for (Entry<String, String> entry : headerPara.entrySet()) {
+                    connection.setRequestProperty(entry.getKey(), entry.getValue());
+                }
             }
             connection.connect();
 
             //POST请求
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(),"UTF-8"));
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"));
             out.write(param);
             out.flush();
             out.close();
@@ -67,5 +67,5 @@ public class HttpUtil {
         }
         return result;
     }
-	
+
 }

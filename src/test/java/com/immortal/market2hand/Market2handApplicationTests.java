@@ -2,6 +2,7 @@ package com.immortal.market2hand;
 
 import com.immortal.market2hand.dao.common.GoodsCategoryDao;
 import com.immortal.market2hand.dao.common.GoodsDao;
+import com.immortal.market2hand.dao.common.NewsDao;
 import com.immortal.market2hand.entity.common.Goods;
 import com.immortal.market2hand.entity.common.GoodsCategory;
 import com.immortal.market2hand.service.common.CollectorsService;
@@ -36,6 +37,9 @@ class Market2handApplicationTests {
 
     @Resource
     private StatisticsService statisticsService;
+
+    @Resource
+    private NewsDao newsDao;
 
     @Test
     void mailTest() throws MessagingException {
@@ -116,5 +120,11 @@ class Market2handApplicationTests {
             price.add(sum);
         }
         System.out.println(price.toString());
+    }
+
+    @Test
+    public void testNewsCount(){
+        Long newsCount = newsDao.findNewsCount(4l);
+        System.out.println(newsCount);
     }
 }
