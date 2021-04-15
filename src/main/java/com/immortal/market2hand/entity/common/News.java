@@ -37,7 +37,7 @@ public class News extends BaseEntity {
     private Integer sort = 0;//分类顺序，默认升序排列,默认是0
 
     @Column(name = "status", nullable = false, length = 4)
-    private Integer status = 1;//状态码，1是系统公告,0是订单消息
+    private Integer status = 1;//状态码，1是系统公告,0是订单消息，2是评论消息
 
     @ManyToOne
     @JoinColumn(name = "student_id")

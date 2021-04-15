@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 
 /**
- * 备份数据库定时器
+ * 备份数据库用户
  *
  * @author Administrator
  */

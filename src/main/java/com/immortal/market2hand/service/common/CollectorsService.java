@@ -87,7 +87,7 @@ public class CollectorsService {
         news.setTitle("二手交易订单消息");
         news.setViewNumber(0);
         news.setSort(9);
-        news.setStatus(1);
+        news.setStatus(0);
         Date date1 = new Date();
         news.setCreateTime(date1);
         news.setUpdateTime(date1);

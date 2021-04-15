@@ -8,6 +8,7 @@ import com.immortal.market2hand.bean.Result;
 import com.immortal.market2hand.constant.SessionConstant;
 import com.immortal.market2hand.entity.common.*;
 import com.immortal.market2hand.service.common.*;
+import com.immortal.market2hand.util.MD5SecretUtil;
 import com.immortal.market2hand.util.SessionUtil;
 import com.immortal.market2hand.util.ValidateEntityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -482,6 +483,19 @@ public class HomeStudentController {
         if (commentService.save(comment) == null) {
             return Result.error(CodeMsg.HOME_STUDENT_COMMENT_ADD_ERROR);
         }
+        News news = new News();
+        news.setStatus(2);  //2表示评论消息
+        news.setIsread(0);
+        news.setViewNumber(0);
+        news.setTitle("二手商城评论消息");
+        String commentContent = loginedStudent.getNickname()+"评论了你的商品"+find.getName();
+        news.setContent(commentContent);
+        news.setStudent(find.getStudent());
+        Date date = new Date();
+        news.setUpdateTime(date);
+        news.setCreateTime(date);
+        news.setSort(9);
+        newsService.save(news);
         return Result.success(true);
     }
 
@@ -497,10 +511,11 @@ public class HomeStudentController {
     public Result<Boolean> editPwd(@RequestParam(name = "oldPwd", required = true) String oldPwd,
                                    @RequestParam(name = "newPwd", required = true) String newPwd) {
         Student loginedStudent = (Student) SessionUtil.get(SessionConstant.SESSION_STUDENT_LOGIN_KEY);
-        if (!loginedStudent.getPassword().equals(oldPwd)) {
+        if (!loginedStudent.getPassword().equals(MD5SecretUtil.md5(oldPwd))) {
             return Result.error(CodeMsg.HOME_STUDENT_EDITPWD_OLD_ERROR);
         }
-        loginedStudent.setPassword(newPwd);
+        String newPwdd = MD5SecretUtil.md5(newPwd);
+        loginedStudent.setPassword(newPwdd);
         if (studentService.save(loginedStudent) == null) {
             return Result.error(CodeMsg.HOME_STUDENT_EDITINFO_ERROR);
         }

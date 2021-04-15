@@ -32,6 +32,11 @@
                                         </h4>
                                         <p class="want-detail">${news.content}</p>
                                     </#if>
+                                    <#if news.status == 2>
+                                        <h4 class="want-name">【评论消息】
+                                        </h4>
+                                        <p class="want-detail">${news.content}</p>
+                                    </#if>
                                     <p class="want-attr">
                                         <span>${news.createTime}</span>
                                     </p>
