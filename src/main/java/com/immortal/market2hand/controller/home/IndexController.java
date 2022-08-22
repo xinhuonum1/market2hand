@@ -144,6 +144,9 @@ public class IndexController {
         if (studentService.findByEmail(student.getStuemail()) != null) {
             return Result.error(CodeMsg.HOME_STUDENT_REGISTER_SN_EXIST);
         }
+        if(studentService.findBySn(student.getSn()) != null){
+            return Result.error(CodeMsg.HOME_STUDENT_REGISTER_SN_EXIST);
+        }
         //用md5加密算法对用户密码加密
         String md5pw = MD5SecretUtil.md5(student.getPassword());
         student.setPassword(md5pw);

@@ -98,12 +98,19 @@
                         </div>
 
                     </li>
+                    <li>
+                        <label for="sn" class="input-tips2">学号：</label>
+                        <div class="inputOuter2">
 
+                            <input type="text" id="sn" name="sn" maxlength="24" class="inputstyle2"/>
+                        </div>
+
+                    </li>
                     <li>
                         <label for="qq" class="input-tips2">QQ：</label>
                         <div class="inputOuter2">
 
-                            <input type="text" id="qq" name="qq" maxlength="10" class="inputstyle2"/>
+                            <input type="text" id="qq" name="qq" maxlength="12" class="inputstyle2"/>
                         </div>
 
                     </li>

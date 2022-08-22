@@ -65,7 +65,7 @@ $(document).ready(function () {
     });
 
     $('#login-sn').focus(function () {
-        $('#loginCue').html("<font ><b>请输入用户名或邮箱地址</b></font>");
+        $('#loginCue').html("<font ><b>请输入用户名/邮箱/学号</b></font>");
     }).blur(function () {
         if ($('#login-sn').val().length == 0) {
             $('#loginCue').html("<font color='red'><b>账号不能为空</b></font>");

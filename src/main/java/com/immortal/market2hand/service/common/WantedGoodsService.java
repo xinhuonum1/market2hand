@@ -79,14 +79,18 @@ public class WantedGoodsService {
      * @return
      */
     public PageBean<WantedGoods> findlist(PageBean<WantedGoods> pageBean, WantedGoods WantedGoods) {
-        ExampleMatcher exampleMatcher = ExampleMatcher.matching();
-        exampleMatcher = exampleMatcher.withMatcher("name", GenericPropertyMatchers.contains());
-        exampleMatcher = exampleMatcher.withIgnorePaths("viewNumber");
+        ExampleMatcher exampleMatcher = ExampleMatcher.matchingAll();
+//                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains())
+//                .withIgnorePaths("viewNumber");
+//        exampleMatcher = exampleMatcher.withMatcher("name", GenericPropertyMatchers.contains());
+//        exampleMatcher = exampleMatcher.withIgnorePaths("viewNumber");
         Example<WantedGoods> example = Example.of(WantedGoods, exampleMatcher);
         Sort sort = Sort.by(Direction.DESC, "createTime");
         PageRequest pageable = PageRequest.of(pageBean.getCurrentPage() - 1, pageBean.getPageSize(), sort);
         Page<WantedGoods> findAll = wantedGoodsDao.findAll(example, pageable);
+//        System.out.println(findAll.getSize());
         pageBean.setContent(findAll.getContent());
+//        System.out.println(pageBean.getContent());
         pageBean.setTotal(findAll.getTotalElements());
         pageBean.setTotalPage(findAll.getTotalPages());
         return pageBean;

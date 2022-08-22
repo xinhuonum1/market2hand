@@ -45,7 +45,7 @@ input::-ms-clear {
 .login {
     margin: 0 auto;
     width: 370px;
-    height: 400px;
+    height: 440px;
     border-radius: 15px;
     background-clip: padding-box;
     border: 1px solid #eaeaea;
@@ -109,6 +109,7 @@ input::-ms-clear {
 
 .web_login {
     width: 370px;
+    height: 500px;
     position: relative;
 }
 

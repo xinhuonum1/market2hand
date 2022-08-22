@@ -10,12 +10,16 @@ import javax.persistence.Table;
 import com.immortal.market2hand.annotion.ValidateEntity;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 
 /**
  * 求购物品实体类
  *
  * @author Administrator
  */
+
 @Entity
 @Table(name = "ylrc_wanted_goods")
 @EntityListeners(AuditingEntityListener.class)
@@ -24,11 +28,15 @@ public class WantedGoods extends BaseEntity {
     /**
      *
      */
-    private static final long serialVersionUID = 1L;
+    private static final int serialVersionUID = 1;
 
+
+//    @Column(name="create_time")
+//    private Timestamp createTime;
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;//所属学生
+
 
     @ValidateEntity(required = true, requiredLeng = true, minLength = 1, maxLength = 30, errorRequiredMsg = "物品名称不能为空!", errorMinLengthMsg = "物品名称长度需大于1!", errorMaxLengthMsg = "物品名称长度不能大于30!")
     @Column(name = "name", nullable = false, length = 32)
@@ -52,6 +60,28 @@ public class WantedGoods extends BaseEntity {
 
     @Column(name = "need_number", nullable = false, length = 200)
     private int needNumber = 0;//物品浏览量
+
+    public static int getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+//    @Override
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+
+//    @Override
+//    public Timestamp getCreateTime() {
+//        return createTime;
+//    }
+//
+//    public void setCreateTime(Timestamp createTime) {
+//        this.createTime = createTime;
+//    }
 
     public int getNeedNumber() {
         return needNumber;
