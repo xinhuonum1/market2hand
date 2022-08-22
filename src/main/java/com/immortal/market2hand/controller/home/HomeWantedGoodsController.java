@@ -32,7 +32,7 @@ public class HomeWantedGoodsController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model, PageBean<WantedGoods> pageBean, WantedGoods WantedGoods) {
-        model.addAttribute("pageBean", wantedGoodsService.findWantedGoodslist(pageBean, WantedGoods));
+        model.addAttribute("pageBean", wantedGoodsService.findlist(pageBean, WantedGoods));
         return "home/wanted_goods/list";
     }
 }
