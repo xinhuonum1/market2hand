@@ -16,8 +16,8 @@
     <div class="main center clearfix">
         <div class="ershou-details">
             <div class="ershou-photos-wr">
-                <!-- 收藏功能
-               <a class="ershou-favorite" href="javascript:void(0);" style="background-image: url('heart.png');" onclick="favorites();">0</a> -->
+<#--                <!-- 收藏功能-->
+<#--               <a class="ershou-favorite" href="javascript:void(0);" style="background-image: url('heart.png');" onclick="favorites();">0</a> &ndash;&gt;-->
                 <!-- 轮播大图-->
                 <div class="bigger-photo-box">
                     <a class="bigger-photo hide show" rel="img_group" href="">
@@ -30,7 +30,8 @@
                     <p class="ershou-title">${goods.name}</p>
                     <div class=" discount">
                         <span class="buy-price">原价：${goods.buyPrice}</span>
-                        <span class="ershou-price">二手街价：${goods.sellPrice}</span>
+                        <br>
+                        <span class="ershou-price">二手价：${goods.sellPrice}</span>
                     </div>
                     <p class="bro-counts">浏览了<span>${goods.viewNumber}</span>次</p>
                 </div>
@@ -48,7 +49,7 @@
                             <span>发布时间</span>
                         </div>
                         <div class="value">
-                            <span class="real-time" id="creat_time">${goods.createTime!""}</span>
+                            <span class="real-time" id="creat_time">${goods.createTime!}</span>
                         </div>
                     </li>
                     <li class="ershou-place">
@@ -71,7 +72,7 @@
                         </div>
                         <div class="value">
                             <span id="user_college">${goods.student.academy!"该用户未填写学院信息"}</span>
-                            <span id="user_grade">${goods.student.grade!"该用户未填写年级信息"}</span>
+<#--                            <span id="user_grade">${goods.student.grade!"该用户未填写年级信息"}</span>-->
                         </div>
                     </li>
                     <li class="ershou-seller">
@@ -83,15 +84,14 @@
                         </div>
                     </li>
                 </ul>
-                <div id="buy-button" class="div-inline">
-                    <a style="color: white;cursor:pointer;"> 联系卖家</a>
+<#--                <div id="buy-button">-->
+<#--                    <a style="color: white;cursor:pointer;"> 联系卖家</a>-->
+<#--                </div>-->
+                <div id="buy-button">
+                    <a href="javascript:void(0);" onclick="collect(${goods.id});">收藏</a>
                 </div>
-                <div id="buy-button" class="div-inline">
-                    <a style="color: white;cursor:pointer;" href="javascript:void(0);" onclick="collect(${goods.id});">
-                        收藏</a>
-                </div>
-                <div id="buy-button" class="div-inline">
-                    <a style="color: white;cursor:pointer;" onclick="buyGoods(${goods.id});"> 立即购买</a>
+                <div id="buy-button">
+                    <a href="javascript:void(0);" onclick="buyGoods(${goods.id});"> 立即购买</a>
                 </div>
                 <div class="complain">
                     <a href="javascript:void(0);" onclick="report(${goods.id});">•&nbsp;&nbsp;&nbsp;&nbsp;举报&nbsp;&nbsp;&nbsp;&nbsp;•</a>

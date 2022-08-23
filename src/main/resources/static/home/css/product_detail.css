@@ -663,7 +663,7 @@ a.bigger-photo {
 .ershou-info {
     position: relative;
     margin-left: 540px;
-    height: 560px;
+    height: 800px;
     background-color: rgb(255, 255, 255);
     overflow: hidden;
 }
@@ -697,7 +697,7 @@ a.bigger-photo {
 
 .ershou-price {
     color: rgb(235, 80, 85);
-    font-size: 2.33em;
+    font-size: 1.2em;
     line-height: 1em;
 }
 
@@ -1069,8 +1069,8 @@ div.comment .avatar, .post-comment .avatar {
     }
 
     .ershou-info {
-        margin-left: 560px;
-        height: 560px;
+        margin-left: 540px;
+        height: 700px;
     }
 
     .comments {
